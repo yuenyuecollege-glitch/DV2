@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C7 — Treemap of organisation types among formal volunteers, GSS 2025 Table 11.",
+  "width": "container",
+  "height": 380,
+  "data": { "url": "data/treemap_org_types.csv" },
+  "layer": [
+    {
+      "mark": { "type": "rect", "stroke": "#f7f8f6", "strokeWidth": 1.5 },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": { "domain": [0, 720], "nice": false, "zero": false },
+          "axis": null
+        },
+        "x2": { "field": "x2" },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": { "domain": [0, 360], "nice": false, "zero": false },
+          "axis": null
+        },
+        "y2": { "field": "y2" },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": {
+            "domain": ["sport", "other"],
+            "range": ["#0f6b6d", "#7a9ea3"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "labelLimit": 280,
+            "labelExpr": "datum.value === 'sport' ? 'Sport / recreation (largest)' : 'Other organisation types'"
+          }
+        },
+        "tooltip": [
+          { "field": "short", "type": "nominal", "title": "Organisation type" },
+          { "field": "share", "type": "quantitative", "title": "Share of volunteers (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.show_label === 'yes'" }],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "lineBreak": "\\n"
+      },
+      "encoding": {
+        "x": {
+          "field": "cx",
+          "type": "quantitative",
+          "scale": { "domain": [0, 720], "nice": false, "zero": false },
+          "axis": null
+        },
+        "y": {
+          "field": "cy",
+          "type": "quantitative",
+          "scale": { "domain": [0, 360], "nice": false, "zero": false },
+          "axis": null
+        },
+        "text": { "field": "short" },
+        "color": { "value": "#f7f8f6" }
+      }
+    }
+  ]
+}

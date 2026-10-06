@@ -1,0 +1,22 @@
+{
+  "age_45_54": 28.0,
+  "age_25_34": 13.1,
+  "formal_rate_2025": 22.6,
+  "informal_rate_2025": 29.5,
+  "major_cities": 20.9,
+  "remote": 34.0,
+  "org_sport": 33.3,
+  "org_faith": 22.9,
+  "org_community": 17.6,
+  "reason_help": 65.2,
+  "reason_satisfaction": 62.8,
+  "reason_no_time": 47.0,
+  "reason_not_interested": 35.5,
+  "hours_2025_m": 618.2,
+  "formal_rate_2019": 29.5,
+  "formal_rate_2020": 24.8,
+  "census_volunteers": 2932790,
+  "census_rate": 15.1,
+  "census_rate_excl_not_stated": 15.1,
+  "census_rate_incl_not_stated": 14.1
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "C8 — Sankey / alluvial of Snapshot 2023 formal / informal / both / neither (implied) population shares.",
+  "width": 520,
+  "height": 340,
+  "padding": { "left": 150, "right": 200, "top": 8, "bottom": 8 },
+  "autosize": { "type": "pad", "contains": "padding" },
+  "data": [
+    { "name": "nodes", "url": "data/sankey_nodes.json" },
+    { "name": "links", "url": "data/sankey_links.json" }
+  ],
+  "marks": [
+    {
+      "type": "path",
+      "from": { "data": "links" },
+      "encode": {
+        "enter": {
+          "path": { "field": "path" },
+          "strokeWidth": { "value": 0 },
+          "tooltip": {
+            "signal": "datum.dest + ': ' + format(datum.value, '.1f') + '% of adults'"
+          }
+        },
+        "update": {
+          "fill": { "field": "colour" },
+          "fillOpacity": { "value": 0.82 }
+        },
+        "hover": { "fillOpacity": { "value": 0.96 } }
+      }
+    },
+    {
+      "type": "rect",
+      "from": { "data": "nodes" },
+      "encode": {
+        "enter": {
+          "x": { "field": "x" },
+          "y": { "field": "y" },
+          "width": { "field": "w" },
+          "height": { "field": "h" },
+          "fill": { "value": "#15202b" },
+          "cornerRadius": { "value": 1 }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "nodes" },
+      "encode": {
+        "enter": {
+          "x": { "field": "label_x" },
+          "y": { "field": "mid_y" },
+          "text": {
+            "signal": "datum.name + '  ' + format(datum.value, '.1f') + '%'"
+          },
+          "align": { "field": "align" },
+          "baseline": { "value": "middle" },
+          "fontSize": { "value": 12 },
+          "fontWeight": { "value": 600 },
+          "fill": { "value": "#15202b" }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C6 — Slope chart of formal vs informal volunteering rates, 2019 to 2025 (ABS GSS).",
+  "width": "container",
+  "height": 340,
+  "padding": { "left": 20, "right": 20 },
+  "data": { "url": "data/slope_formal_informal.csv" },
+  "layer": [
+    {
+      "mark": { "type": "line", "strokeWidth": 2.4 },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "scale": { "paddingOuter": 0.35 },
+          "axis": { "labelAngle": 0, "labelFontWeight": 600 }
+        },
+        "y": {
+          "field": "rate_pct",
+          "type": "quantitative",
+          "title": "Participation rate (%)",
+          "scale": { "domain": [18, 38] }
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Formal (organisation)",
+              "Informal (4 weeks)"
+            ],
+            "range": ["#0f6b6d", "#c47a3a"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "labelLimit": 200,
+            "columns": 2
+          }
+        },
+        "detail": { "field": "series" },
+        "tooltip": [
+          { "field": "series", "type": "nominal" },
+          { "field": "year", "type": "nominal" },
+          { "field": "rate_pct", "type": "quantitative", "title": "Rate (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "circle", "filled": true, "size": 90, "opacity": 1 },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "rate_pct", "type": "quantitative" },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Formal (organisation)",
+              "Informal (4 weeks)"
+            ],
+            "range": ["#0f6b6d", "#c47a3a"]
+          },
+          "legend": null
+        },
+        "detail": { "field": "series" }
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.year === '2025'" }],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "rate_pct", "type": "quantitative" },
+        "text": { "field": "rate_pct", "type": "quantitative", "format": ".1f" },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Formal (organisation)",
+              "Informal (4 weeks)"
+            ],
+            "range": ["#0a4547", "#8a5528"]
+          },
+          "legend": null
+        }
+      }
+    }
+  ]
+}

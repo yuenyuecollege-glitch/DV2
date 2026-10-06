@@ -1,0 +1,19 @@
+age_group,hours_band,share_pct
+15-24,1-20 hours,43.1
+15-24,21-99 hours,32.5
+15-24,100 hours or more,19.6
+25-34,1-20 hours,36.3
+25-34,21-99 hours,35.0
+25-34,100 hours or more,30.4
+35-44,1-20 hours,48.2
+35-44,21-99 hours,26.8
+35-44,100 hours or more,24.6
+45-54,1-20 hours,45.5
+45-54,21-99 hours,28.9
+45-54,100 hours or more,26.8
+55-64,1-20 hours,33.2
+55-64,21-99 hours,32.2
+55-64,100 hours or more,34.8
+65 years and over,1-20 hours,28.7
+65 years and over,21-99 hours,27.6
+65 years and over,100 hours or more,43.7

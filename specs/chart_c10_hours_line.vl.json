@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C10 — Multi-line / line of total formal volunteer hours, 2019–2025 (basic idiom).",
+  "width": "container",
+  "height": 280,
+  "data": { "url": "data/gss_formal_hours_trend.csv" },
+  "layer": [
+    {
+      "mark": { "type": "line", "strokeWidth": 2.6, "color": "#0f6b6d" },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "axis": { "labelAngle": 0 }
+        },
+        "y": {
+          "field": "total_hours_million",
+          "type": "quantitative",
+          "title": "Total formal volunteer hours (millions)",
+          "scale": { "domain": [400, 700] }
+        },
+        "tooltip": [
+          { "field": "year", "type": "ordinal" },
+          {
+            "field": "total_hours_million",
+            "type": "quantitative",
+            "title": "Hours (millions)",
+            "format": ".1f"
+          },
+          { "field": "note", "type": "nominal", "title": "Source note" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "size": 90,
+        "color": "#0f6b6d",
+        "opacity": 1
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "total_hours_million", "type": "quantitative" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#0a4547"
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "total_hours_million", "type": "quantitative" },
+        "text": { "field": "total_hours_million", "type": "quantitative", "format": ".0f" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C9 — Heatmap of annual hours band by age among formal volunteers, GSS 2025 Table 12.",
+  "width": "container",
+  "height": 320,
+  "data": { "url": "data/gss_hours_by_age_heatmap.csv" },
+  "layer": [
+    {
+      "mark": { "type": "rect", "stroke": "#f7f8f6", "strokeWidth": 1.5 },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "nominal",
+          "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"],
+          "title": null
+        },
+        "x": {
+          "field": "hours_band",
+          "type": "nominal",
+          "sort": ["1-20 hours", "21-99 hours", "100 hours or more"],
+          "title": "Hours in the prior 12 months",
+          "axis": { "labelAngle": 0 }
+        },
+        "color": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "tealblues",
+            "domain": [15, 55]
+          },
+          "legend": {
+            "title": "Share of age group (%)",
+            "orient": "right",
+            "gradientLength": 120
+          }
+        },
+        "tooltip": [
+          { "field": "age_group", "type": "nominal", "title": "Age" },
+          { "field": "hours_band", "type": "nominal", "title": "Hours" },
+          { "field": "share_pct", "type": "quantitative", "title": "Share (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "text", "fontSize": 11, "fontWeight": 600 },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "nominal",
+          "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"]
+        },
+        "x": {
+          "field": "hours_band",
+          "type": "nominal",
+          "sort": ["1-20 hours", "21-99 hours", "100 hours or more"]
+        },
+        "text": { "field": "share_pct", "type": "quantitative", "format": ".0f" },
+        "color": {
+          "condition": { "test": "datum.share_pct >= 38", "value": "#f7f8f6" },
+          "value": "#15202b"
+        }
+      }
+    }
+  ]
+}

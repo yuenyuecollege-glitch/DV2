@@ -1,0 +1,26 @@
+AI acknowledgement — FIT3179 Data Visualisation 2
+=================================================
+Visualisation: “Who still shows up?” (Volunteer Organisations)
+Date: September 2026
+
+Generative AI tools (Cursor agent) were used to:
+
+1. Search for and shortlist public Australian volunteering datasets (ABS GSS,
+   Census VOLWP, ACNC, Snapshot of Volunteering).
+2. Write Python scripts to download, clean, and slim data into CSV / GeoJSON
+   files under data/ (including mapshaper simplification of ASGS boundaries).
+3. Draft Vega-Lite and Vega JSON specifications for maps and charts.
+4. Assemble the scrolling HTML/CSS/JS page layout, typography, and narrative
+   copy, then edit for plain language.
+5. Maintain PLAN.md and verify numeric claims against downloaded ABS tables.
+
+Human responsibilities (student):
+
+- Chose the story spine, chart list, and map idioms against the rubric.
+- Checked that figures match ABS / ACNC / Snapshot publications.
+- Will complete Moodle write-up Part B, sketch upload, authorship details,
+  and GitHub Pages publishing.
+- Remains responsible for interview defence of every idiom and projection.
+
+No fabricated statistics were invented by AI; all plotted values were taken
+from the cited public sources (see page footer and PLAN.md data inventory).

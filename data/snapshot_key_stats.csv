@@ -1,0 +1,7 @@
+metric,value,unit,year
+any_volunteer_pct,64.3,percent,2023
+formal_pct,31.8,percent,2023
+informal_pct,42.7,percent,2023
+both_pct,24.5,percent,2023
+total_hours_billion,3.2,billion_hours,2023
+modelled_benefits_billion_aud,565.6,AUD_billion,2023

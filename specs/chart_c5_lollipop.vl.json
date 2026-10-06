@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C5 — Lollipop of formal volunteering rate by age, GSS 2025.",
+  "width": "container",
+  "height": 300,
+  "data": { "url": "data/gss_formal_rate_by_age.csv" },
+  "transform": [
+    {
+      "calculate": "datum.age_group === '45-54' || datum.age_group === '25-34' ? 'highlight' : 'other'",
+      "as": "tone"
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "rule", "strokeWidth": 2.2 },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "nominal",
+          "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"],
+          "title": null
+        },
+        "x": { "field": "formal_rate_pct", "type": "quantitative" },
+        "x2": { "datum": 0 },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": { "domain": ["highlight", "other"], "range": ["#0f6b6d", "#9aadb2"] },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": { "type": "circle", "filled": true, "size": 100, "opacity": 1 },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "nominal",
+          "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"]
+        },
+        "x": {
+          "field": "formal_rate_pct",
+          "type": "quantitative",
+          "title": "Formal volunteering rate (%)",
+          "scale": { "domain": [0, 35] }
+        },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": { "domain": ["highlight", "other"], "range": ["#0f6b6d", "#9aadb2"] },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "age_group", "type": "nominal", "title": "Age" },
+          { "field": "formal_rate_pct", "type": "quantitative", "title": "Formal (%)", "format": ".1f" },
+          { "field": "informal_rate_pct", "type": "quantitative", "title": "Informal (%)", "format": ".1f" }
+        ]
+      }
+    }
+  ]
+}

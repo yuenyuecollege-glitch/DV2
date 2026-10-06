@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C11 — Unit / waffle: GSS 2025 formal vs Census 2021 volunteering (about N in 100).",
+  "data": { "url": "data/waffle_compare.csv" },
+  "facet": {
+    "column": {
+      "field": "panel",
+      "type": "nominal",
+      "sort": [
+        "GSS 2025 · formal (~23 in 100)",
+        "Census 2021 · (~14 in 100)"
+      ],
+      "header": {
+        "title": null,
+        "labelFontSize": 13,
+        "labelFontWeight": 600,
+        "labelPadding": 8
+      }
+    }
+  },
+  "spec": {
+    "width": 220,
+    "height": 220,
+    "mark": {
+      "type": "rect",
+      "stroke": "#f7f8f6",
+      "strokeWidth": 2,
+      "cornerRadius": 2
+    },
+    "encoding": {
+      "x": { "field": "col", "type": "ordinal", "axis": null },
+      "y": { "field": "row", "type": "ordinal", "axis": null },
+      "color": {
+        "field": "status",
+        "type": "nominal",
+        "scale": {
+          "domain": ["volunteer", "not"],
+          "range": ["#0f6b6d", "#d5dee0"]
+        },
+        "legend": {
+          "title": null,
+          "orient": "bottom",
+          "labelExpr": "datum.value === 'volunteer' ? 'Volunteered' : 'Did not'"
+        }
+      },
+      "tooltip": [
+        { "field": "panel", "type": "nominal" },
+        { "field": "status", "type": "nominal", "title": "Cell" }
+      ]
+    }
+  },
+  "resolve": { "scale": { "color": "shared" } }
+}

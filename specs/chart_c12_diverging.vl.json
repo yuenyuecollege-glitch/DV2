@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C12 — Diverging bars: reasons for vs against formal volunteering, GSS 2025.",
+  "width": "container",
+  "height": 420,
+  "data": { "url": "data/reasons_diverging.csv" },
+  "transform": [
+    {
+      "calculate": "datum.polarity === 'for' ? 'For volunteering' : 'Against volunteering'",
+      "as": "side"
+    }
+  ],
+  "mark": { "type": "bar", "cornerRadiusEnd": 2 },
+  "encoding": {
+    "y": {
+      "field": "reason",
+      "type": "nominal",
+      "sort": { "field": "signed_pct", "order": "descending" },
+      "title": null,
+      "axis": { "labelLimit": 340 }
+    },
+    "x": {
+      "field": "signed_pct",
+      "type": "quantitative",
+      "title": "Share of people (%) — left: not volunteering · right: volunteering",
+      "axis": { "labelExpr": "replace(format(datum.value, 'd'), '-', '')" }
+    },
+    "color": {
+      "field": "side",
+      "type": "nominal",
+      "scale": {
+        "domain": ["For volunteering", "Against volunteering"],
+        "range": ["#0f6b6d", "#c47a3a"]
+      },
+      "legend": {
+        "title": null,
+        "orient": "top",
+        "direction": "horizontal",
+        "columns": 2,
+        "labelLimit": 200
+      }
+    },
+    "tooltip": [
+      { "field": "reason", "type": "nominal" },
+      { "field": "side", "type": "nominal" },
+      { "field": "pct", "type": "quantitative", "title": "Share (%)", "format": ".1f" }
+    ]
+  }
+}

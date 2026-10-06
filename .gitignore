@@ -1,0 +1,17 @@
+.venv/
+data/_raw/
+.DS_Store
+node_modules/
+.firecrawl/
+*.pyc
+__pycache__/
+
+# Heavy course materials — keep local; do not ship to GitHub Pages
+Course Note/
+*.pdf
+*.docx
+ASSIGNMENT_COMPLETION_PROMPT.md
+
+# OS / editor
+.idea/
+.vscode/

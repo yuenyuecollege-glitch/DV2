@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C2 — Proportional symbol map of Census 2021 volunteer counts by state/territory. Same Albers AU projection as C1. Size encodes counts (Course Notes: prop symbols for totals).",
+  "title": {
+    "text": "Where the volunteer headcount sits",
+    "subtitle": "Circle area is the count of people who volunteered (Census 2021). NSW and Victoria hold the largest pools — rates tell a different story."
+  },
+  "width": 480,
+  "height": 400,
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [-132, 0],
+    "parallels": [-18, -36],
+    "scale": 720,
+    "center": [0, -28]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states.geojson",
+        "format": { "type": "json", "property": "features" }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#d9e3e6",
+        "stroke": "#f7f8f6",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": { "url": "data/state_volunteer_centroids.csv" },
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "fill": "#0f6b6d",
+        "fillOpacity": 0.78,
+        "stroke": "#0a4547",
+        "strokeWidth": 0.9
+      },
+      "encoding": {
+        "longitude": { "field": "longitude", "type": "quantitative" },
+        "latitude": { "field": "latitude", "type": "quantitative" },
+        "size": {
+          "field": "volunteers",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "range": [80, 2800]
+          },
+          "legend": {
+            "title": "Volunteers",
+            "orient": "bottom-left",
+            "values": [50000, 250000, 750000],
+            "format": ",.0s"
+          }
+        },
+        "tooltip": [
+          { "field": "state", "type": "nominal", "title": "State / territory" },
+          { "field": "volunteers", "type": "quantitative", "title": "Volunteers", "format": "," },
+          { "field": "rate_pct", "type": "quantitative", "title": "Rate (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "data": { "url": "data/state_volunteer_centroids.csv" },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "dy": -1
+      },
+      "encoding": {
+        "longitude": { "field": "longitude", "type": "quantitative" },
+        "latitude": { "field": "latitude", "type": "quantitative" },
+        "text": { "field": "state_abbr" },
+        "color": { "value": "#15202b" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null }
+  }
+}

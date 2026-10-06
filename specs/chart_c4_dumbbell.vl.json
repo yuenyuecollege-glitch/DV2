@@ -1,0 +1,56 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C4 — Dumbbell: major cities vs remote formal volunteering rate, GSS 2025.",
+  "width": "container",
+  "height": 120,
+  "data": { "url": "data/dumbbell_remoteness.csv" },
+  "layer": [
+    {
+      "mark": { "type": "rule", "strokeWidth": 3, "color": "#9aadb2" },
+      "encoding": {
+        "y": { "field": "label", "type": "nominal", "title": null, "axis": { "labelLimit": 280 } },
+        "x": { "field": "major_cities", "type": "quantitative" },
+        "x2": { "field": "remote" }
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": ["major_cities", "remote"],
+          "as": ["place", "rate_pct"]
+        }
+      ],
+      "mark": { "type": "circle", "filled": true, "size": 160, "opacity": 1 },
+      "encoding": {
+        "y": { "field": "label", "type": "nominal" },
+        "x": {
+          "field": "rate_pct",
+          "type": "quantitative",
+          "title": "Formal volunteering rate (%)",
+          "scale": { "domain": [15, 40] }
+        },
+        "color": {
+          "field": "place",
+          "type": "nominal",
+          "scale": {
+            "domain": ["major_cities", "remote"],
+            "range": ["#7a9499", "#0f6b6d"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "columns": 2,
+            "labelLimit": 220,
+            "labelExpr": "datum.value === 'major_cities' ? 'Major cities (20.9%)' : 'Remote Australia (34.0%)'"
+          }
+        },
+        "tooltip": [
+          { "field": "place", "type": "nominal", "title": "Place" },
+          { "field": "rate_pct", "type": "quantitative", "title": "Rate (%)", "format": ".1f" },
+          { "field": "gap_pt", "type": "quantitative", "title": "Gap (pts)", "format": ".1f" }
+        ]
+      }
+    }
+  ]
+}
