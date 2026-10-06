@@ -3,7 +3,6 @@
 ## How to run
 
 ```bash
-cd "Ass 22"
 python3 -m http.server 8765
 ```
 
