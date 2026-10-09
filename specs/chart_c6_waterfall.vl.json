@@ -38,7 +38,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["start", "mid", "end", "drop"],
-            "range": ["#7a9ea3", "#5a8a8c", "#0f6b6d", "#c47a3a"]
+            "range": ["#66bb6a", "#43a047", "#2e7d32", "#ff7043"]
           },
           "legend": {
             "title": null,
@@ -58,7 +58,7 @@
       "mark": {
         "type": "text",
         "dy": -14,
-        "fontSize": 13,
+        "fontSize": 14,
         "fontWeight": 700
       },
       "encoding": {
@@ -66,8 +66,8 @@
         "y": { "field": "y1", "type": "quantitative" },
         "text": { "field": "label_text", "type": "nominal" },
         "color": {
-          "condition": { "test": "datum.kind === 'change'", "value": "#8a5528" },
-          "value": "#0a4547"
+          "condition": { "test": "datum.kind === 'change'", "value": "#bf360c" },
+          "value": "#1b5e20"
         }
       }
     }

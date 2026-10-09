@@ -3,43 +3,43 @@ const THEME = {
   font: "Source Sans 3",
   title: {
     font: "Literata",
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: 650,
-    color: "#15202b",
+    color: "#0d1b24",
     subtitleFont: "Source Sans 3",
-    subtitleFontSize: 12,
-    subtitleColor: "#5a6670",
+    subtitleFontSize: 13,
+    subtitleColor: "#4a5863",
     offset: 8,
   },
   axis: {
     labelFont: "Source Sans 3",
     titleFont: "Source Sans 3",
-    labelColor: "#5a6670",
-    titleColor: "#5a6670",
-    domainColor: "#d5d8cc",
+    labelColor: "#4a5863",
+    titleColor: "#4a5863",
+    domainColor: "#cfd6d0",
     gridColor: "#e8ecea",
-    tickColor: "#d5d8cc",
-    labelFontSize: 12,
-    titleFontSize: 12,
+    tickColor: "#cfd6d0",
+    labelFontSize: 13,
+    titleFontSize: 13,
   },
   legend: {
     labelFont: "Source Sans 3",
     titleFont: "Source Sans 3",
-    labelColor: "#5a6670",
-    titleColor: "#15202b",
-    labelFontSize: 12,
-    titleFontSize: 12,
+    labelColor: "#4a5863",
+    titleColor: "#0d1b24",
+    labelFontSize: 13,
+    titleFontSize: 13,
     symbolSize: 120,
   },
   header: {
     labelFont: "Source Sans 3",
     titleFont: "Literata",
-    labelColor: "#15202b",
+    labelColor: "#0d1b24",
   },
   view: { stroke: "transparent" },
 };
 
-const SPEC_VERSION = "20261007i";
+const SPEC_VERSION = "20261009m";
 
 const CHARTS = [
   ["#map-c1", "specs/map_c1_choropleth.vl.json"],
@@ -47,7 +47,7 @@ const CHARTS = [
   ["#map-c3", "specs/map_c3_dot_density.vl.json"],
   ["#chart-c4", "specs/chart_c4_radial.vg.json"],
   ["#chart-c5", "specs/chart_c5_lollipop.vl.json"],
-  ["#chart-c6", "specs/chart_c6_waterfall.vl.json"],
+  ["#chart-c6", "specs/chart_c6_rate_line.vl.json"],
   ["#chart-c7", "specs/chart_c7_treemap.vg.json"],
   ["#chart-c8", "specs/chart_c8_sankey.vg.json"],
   ["#chart-c9", "specs/chart_c9_heatmap.vl.json"],
@@ -62,17 +62,83 @@ const options = {
   config: THEME,
 };
 
+function sizeFor(el) {
+  const styles = getComputedStyle(el);
+  const padX =
+    (parseFloat(styles.paddingLeft) || 0) + (parseFloat(styles.paddingRight) || 0);
+  const padY =
+    (parseFloat(styles.paddingTop) || 0) + (parseFloat(styles.paddingBottom) || 0);
+  const width = Math.max(320, Math.floor((el.clientWidth || el.offsetWidth) - padX));
+  const height = Math.max(
+    320,
+    Math.floor((el.clientHeight || el.offsetHeight || 640) - padY)
+  );
+  return { width, height };
+}
+
+function prepareSpec(selector, spec, width, height) {
+  const next = JSON.parse(JSON.stringify(spec));
+
+  if (selector === "#chart-c7") {
+    next.width = width;
+    next.height = height;
+    next.autosize = { type: "none" };
+    if (next.data && next.data[0] && next.data[0].transform) {
+      const treemap = next.data[0].transform.find((t) => t.type === "treemap");
+      if (treemap) treemap.size = [width, height];
+    }
+  }
+
+  if (selector === "#chart-c11" && next.spec) {
+    const panelW = Math.floor((width - 56) / 2);
+    const panelH = Math.max(300, Math.min(height - 96, panelW));
+    next.spec.width = Math.max(300, panelW);
+    next.spec.height = panelH;
+  }
+
+  if (selector === "#chart-c4") {
+    const side = Math.min(width, height);
+    const chart = Math.max(380, Math.min(500, side - 120));
+    next.width = chart;
+    next.height = chart;
+  }
+
+  return next;
+}
+
 function embedAll() {
   return Promise.all(
-    CHARTS.map(([selector, spec]) => {
+    CHARTS.map(([selector, specPath]) => {
       const el = document.querySelector(selector);
       if (!el) return Promise.resolve();
-      const bust = `${spec}?v=${SPEC_VERSION}`;
-      return vegaEmbed(el, bust, options).catch((err) => {
-        el.textContent =
-          "This chart could not be loaded. Open the page over http://, not as a local file.";
-        console.error(spec, err);
-      });
+      const { width, height } = sizeFor(el);
+      const bust = `${specPath}?v=${SPEC_VERSION}`;
+      const embedOpts = { ...options };
+
+      if (selector === "#chart-c7") {
+        embedOpts.width = width;
+        embedOpts.height = height;
+      }
+
+      return fetch(bust)
+        .then((res) => {
+          if (!res.ok) throw new Error(`Failed to load ${specPath}`);
+          return res.json();
+        })
+        .then((spec) =>
+          vegaEmbed(el, prepareSpec(selector, spec, width, height), embedOpts)
+        )
+        .then((result) => {
+          if (selector === "#chart-c7" && result && result.view) {
+            result.view.width(width).height(height).runAsync();
+          }
+          return result;
+        })
+        .catch((err) => {
+          el.textContent =
+            "This chart could not be loaded. Open the page over http://, not as a local file.";
+          console.error(specPath, err);
+        });
     })
   );
 }

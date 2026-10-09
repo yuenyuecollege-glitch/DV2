@@ -35,7 +35,7 @@
       "type": "nominal",
       "scale": {
         "domain": ["For volunteering", "Against volunteering"],
-        "range": ["#0f6b6d", "#c47a3a"]
+        "range": ["#00897b", "#e65100"]
       },
       "legend": {
         "title": null,

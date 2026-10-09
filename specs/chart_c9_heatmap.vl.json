@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C9 — Heatmap of annual hours band by age among formal volunteers, GSS 2025 Table 12.",
+  "description": "C9 — Heatmap of annual hours band by age among formal volunteers, General Social Survey 2025.",
   "width": "container",
   "height": 420,
   "padding": { "left": 8, "right": 8, "top": 16, "bottom": 16 },
   "data": { "url": "data/gss_hours_by_age_heatmap.csv" },
   "layer": [
     {
-      "mark": { "type": "rect", "stroke": "#f7f8f6", "strokeWidth": 2 },
+      "mark": { "type": "rect", "stroke": "#f5f7f4", "strokeWidth": 2 },
       "encoding": {
         "y": {
           "field": "age_group",
@@ -26,7 +26,7 @@
           "field": "share_pct",
           "type": "quantitative",
           "scale": {
-            "scheme": "tealblues",
+            "range": ["#fce4ec", "#f48fb1", "#ec407a", "#c2185b", "#880e4f"],
             "domain": [15, 55]
           },
           "legend": {
@@ -37,9 +37,9 @@
           }
         },
         "tooltip": [
-          { "field": "age_group", "type": "nominal", "title": "Age" },
-          { "field": "hours_band", "type": "nominal", "title": "Hours" },
-          { "field": "share_pct", "type": "quantitative", "title": "Share (%)", "format": ".1f" }
+          { "field": "age_group", "type": "nominal", "title": "Age group" },
+          { "field": "hours_band", "type": "nominal", "title": "Hours band" },
+          { "field": "share_pct", "type": "quantitative", "title": "Share of age group (%)", "format": ".1f" }
         ]
       }
     },
@@ -52,7 +52,7 @@
       "mark": {
         "type": "rect",
         "filled": false,
-        "stroke": "#c47a3a",
+        "stroke": "#1565c0",
         "strokeWidth": 3
       },
       "encoding": {
@@ -69,7 +69,18 @@
       }
     },
     {
-      "mark": { "type": "text", "fontSize": 13, "fontWeight": 700 },
+      "transform": [
+        {
+          "filter": "datum.age_group === '65 years and over' && datum.hours_band === '100 hours or more'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "dy": -28,
+        "align": "center"
+      },
       "encoding": {
         "y": {
           "field": "age_group",
@@ -81,11 +92,8 @@
           "type": "nominal",
           "sort": ["1-20 hours", "21-99 hours", "100 hours or more"]
         },
-        "text": { "field": "share_pct", "type": "quantitative", "format": ".0f" },
-        "color": {
-          "condition": { "test": "datum.share_pct >= 38", "value": "#f7f8f6" },
-          "value": "#15202b"
-        }
+        "text": { "value": "Long hours concentrate here" },
+        "color": { "value": "#1565c0" }
       }
     }
   ]

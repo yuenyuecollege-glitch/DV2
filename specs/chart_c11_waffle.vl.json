@@ -1,30 +1,38 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C11 — Unit / waffle: GSS 2025 formal vs Census 2021 volunteering (about N in 100).",
+  "description": "C11 — Unit / waffle: General Social Survey 2025 formal vs Census 2021 volunteering.",
   "data": { "url": "data/waffle_compare.csv" },
+  "transform": [
+    {
+      "calculate": "datum.status === 'volunteer' ? 'Volunteered' : 'Did not volunteer'",
+      "as": "status_label"
+    }
+  ],
+  "padding": { "left": 12, "right": 12, "top": 8, "bottom": 8 },
   "facet": {
     "column": {
       "field": "panel",
       "type": "nominal",
       "sort": [
-        "GSS 2025 · formal (~23 in 100)",
-        "Census 2021 · (~14 in 100)"
+        "General Social Survey 2025 · about 23 in 100",
+        "Census 2021 · about 14 in 100"
       ],
       "header": {
         "title": null,
-        "labelFontSize": 14,
+        "labelFontSize": 15,
         "labelFontWeight": 600,
-        "labelPadding": 10,
-        "labelLimit": 280
+        "labelPadding": 12,
+        "labelLimit": 420,
+        "labelAlign": "center"
       }
     }
   },
   "spec": {
-    "width": 260,
-    "height": 260,
+    "width": 440,
+    "height": 440,
     "mark": {
       "type": "rect",
-      "stroke": "#f7f8f6",
+      "stroke": "#f5f7f4",
       "strokeWidth": 2,
       "cornerRadius": 2
     },
@@ -36,19 +44,22 @@
         "type": "nominal",
         "scale": {
           "domain": ["volunteer", "not"],
-          "range": ["#0f6b6d", "#d5dee0"]
+          "range": ["#1565c0", "#cfd8dc"]
         },
         "legend": {
           "title": null,
           "orient": "bottom",
-          "labelExpr": "datum.value === 'volunteer' ? 'Volunteered' : 'Did not'"
+          "labelExpr": "datum.value === 'volunteer' ? 'Volunteered' : 'Did not volunteer'"
         }
       },
       "tooltip": [
-        { "field": "panel", "type": "nominal" },
-        { "field": "status", "type": "nominal", "title": "Cell" }
+        { "field": "panel", "type": "nominal", "title": "Survey" },
+        { "field": "status_label", "type": "nominal", "title": "Cell" }
       ]
     }
   },
-  "resolve": { "scale": { "color": "shared" } }
+  "resolve": { "scale": { "color": "shared" } },
+  "config": {
+    "view": { "stroke": null }
+  }
 }

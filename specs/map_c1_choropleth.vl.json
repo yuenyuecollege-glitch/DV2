@@ -1,15 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C1 — Choropleth of Census 2021 formal volunteering rate (%) by SA4. Albers / conic equal-area for Australia.",
+  "description": "C1 — Choropleth of Census 2021 formal volunteering rate (%) by Statistical Area Level 4. Albers / conic equal-area for Australia.",
   "width": "container",
-  "height": 560,
-  "padding": { "left": 8, "right": 8, "top": 36, "bottom": 64 },
+  "height": 680,
+  "padding": { "left": 8, "right": 8, "top": 28, "bottom": 56 },
   "projection": {
     "type": "conicEqualArea",
     "rotate": [-132, 0],
     "parallels": [-18, -36],
-    "scale": 600,
-    "center": [0, -28]
+    "scale": 980,
+    "center": [0, -27.5]
   },
   "layer": [
     {
@@ -18,21 +18,21 @@
         "format": { "type": "json", "property": "features" }
       },
       "transform": [
-        { "calculate": "datum.properties.sa4_name", "as": "sa4_name" },
+        { "calculate": "datum.properties.sa4_name", "as": "region_name" },
         { "calculate": "datum.properties.rate_pct", "as": "rate_pct" },
         { "calculate": "datum.properties.volunteers", "as": "volunteers" }
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "#f7f8f6",
-        "strokeWidth": 0.45
+        "stroke": "#f5f7f4",
+        "strokeWidth": 0.4
       },
       "encoding": {
         "color": {
           "field": "rate_pct",
           "type": "quantitative",
           "scale": {
-            "scheme": "tealblues",
+            "range": ["#f7fcfd", "#b2e2e2", "#66c2a4", "#2c7a7b", "#004c45"],
             "domainMin": 6,
             "domainMax": 27
           },
@@ -40,50 +40,77 @@
             "title": "Volunteering rate (%)",
             "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 220,
-            "offset": 8,
+            "gradientLength": 240,
+            "offset": 4,
             "format": ".0f"
           }
         },
         "tooltip": [
-          { "field": "sa4_name", "type": "nominal", "title": "SA4 region" },
-          { "field": "rate_pct", "type": "quantitative", "title": "Rate (%)", "format": ".1f" },
-          { "field": "volunteers", "type": "quantitative", "title": "Volunteers", "format": "," }
+          { "field": "region_name", "type": "nominal", "title": "Region" },
+          { "field": "rate_pct", "type": "quantitative", "title": "Volunteering rate (%)", "format": ".1f" },
+          { "field": "volunteers", "type": "quantitative", "title": "Number of volunteers", "format": "," }
         ]
       }
     },
     {
       "data": {
         "values": [
+          { "longitude": 117.0, "latitude": -31.2, "longitude2": 112.5, "latitude2": -28.0 },
+          { "longitude": 150.9, "latitude": -34.0, "longitude2": 155.5, "latitude2": -33.0 }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#0d1b24",
+        "strokeWidth": 1.2,
+        "opacity": 0.8
+      },
+      "encoding": {
+        "longitude": { "field": "longitude", "type": "quantitative" },
+        "latitude": { "field": "latitude", "type": "quantitative" },
+        "longitude2": { "field": "longitude2" },
+        "latitude2": { "field": "latitude2" }
+      }
+    },
+    {
+      "data": {
+        "values": [
           {
-            "longitude": 117.0,
-            "latitude": -31.2,
-            "label": "Wheat Belt 26.8%"
+            "longitude": 108.5,
+            "latitude": -28.0,
+            "label": "Highest rate outside the capitals",
+            "side": "west"
           },
           {
-            "longitude": 151.0,
-            "latitude": -34.1,
-            "label": "Sydney SW 6.8%"
+            "longitude": 159.5,
+            "latitude": -33.0,
+            "label": "Softest capital-city band",
+            "side": "east"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "fontSize": 11,
-        "fontWeight": 600,
-        "align": "left",
-        "dx": 4
+        "fontSize": 13,
+        "fontWeight": 700,
+        "baseline": "bottom",
+        "dy": -6,
+        "clip": false
       },
       "encoding": {
         "longitude": { "field": "longitude", "type": "quantitative" },
         "latitude": { "field": "latitude", "type": "quantitative" },
         "text": { "field": "label" },
-        "color": { "value": "#15202b" }
+        "align": {
+          "condition": { "test": "datum.side === 'west'", "value": "right" },
+          "value": "left"
+        },
+        "color": { "value": "#004d40" }
       }
     }
   ],
   "config": {
-    "view": { "stroke": null },
+    "view": { "stroke": null, "clip": false },
     "legend": { "padding": 4 }
   }
 }

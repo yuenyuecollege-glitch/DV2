@@ -56,9 +56,9 @@
           },
           "align": { "field": "align" },
           "baseline": { "value": "middle" },
-          "fontSize": { "value": 12 },
+          "fontSize": { "value": 13 },
           "fontWeight": { "value": 600 },
-          "fill": { "value": "#15202b" }
+          "fill": { "value": "#0d1b24" }
         }
       }
     }

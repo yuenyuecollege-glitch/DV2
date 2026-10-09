@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "C4 — Radial bar chart: formal volunteering rate by remoteness, GSS 2025. Remote Australia highlighted.",
-  "width": 420,
-  "height": 420,
-  "padding": 40,
+  "description": "C4 — Radial bar chart: formal volunteering rate by remoteness, General Social Survey 2025.",
+  "width": 480,
+  "height": 480,
+  "padding": 70,
   "autosize": { "type": "pad", "contains": "padding" },
   "data": [
     {
@@ -30,17 +30,17 @@
         {
           "type": "formula",
           "as": "theta1",
-          "expr": "datum.idx * (PI / 2) - PI / 2 - 0.06"
+          "expr": "datum.idx * (PI / 2) - PI / 2 - 0.08"
         },
         {
           "type": "formula",
           "as": "outer",
-          "expr": "70 + (datum.formal_rate_pct / 40) * 140"
+          "expr": "70 + (datum.formal_rate_pct / 40) * 130"
         },
         {
           "type": "formula",
           "as": "labelR",
-          "expr": "datum.outer + 18"
+          "expr": "datum.outer + 44"
         },
         {
           "type": "formula",
@@ -56,6 +56,16 @@
           "type": "formula",
           "as": "ly",
           "expr": "datum.labelR * sin(datum.mid)"
+        },
+        {
+          "type": "formula",
+          "as": "labelAlign",
+          "expr": "cos(datum.mid) > 0.15 ? 'left' : cos(datum.mid) < -0.15 ? 'right' : 'center'"
+        },
+        {
+          "type": "formula",
+          "as": "labelText",
+          "expr": "datum.remoteness === 'Remote' ? 'Remote\\nWidest gap from cities' : datum.remoteness"
         }
       ]
     }
@@ -65,7 +75,7 @@
       "name": "color",
       "type": "ordinal",
       "domain": ["highlight", "other"],
-      "range": ["#0f6b6d", "#9aadb2"]
+      "range": ["#ff6d00", "#3949ab"]
     }
   ],
   "marks": [
@@ -83,7 +93,7 @@
           "cornerRadius": { "value": 4 },
           "fill": { "scale": "color", "field": "tone" },
           "tooltip": {
-            "signal": "datum.remoteness + ': ' + format(datum.formal_rate_pct, '.1f') + '%'"
+            "signal": "datum.remoteness + ': formal volunteering rate ' + format(datum.formal_rate_pct, '.1f') + '%'"
           }
         }
       }
@@ -95,14 +105,12 @@
         "enter": {
           "x": { "signal": "width / 2 + datum.lx" },
           "y": { "signal": "height / 2 + datum.ly" },
-          "text": {
-            "signal": "datum.remoteness + '\\n' + format(datum.formal_rate_pct, '.1f') + '%'"
-          },
-          "align": { "value": "center" },
+          "text": { "field": "labelText" },
+          "align": { "field": "labelAlign" },
           "baseline": { "value": "middle" },
-          "fontSize": { "value": 12 },
-          "fontWeight": { "value": 600 },
-          "fill": { "value": "#15202b" },
+          "fontSize": { "value": 13 },
+          "fontWeight": { "value": 700 },
+          "fill": { "value": "#0d1b24" },
           "lineBreak": { "value": "\\n" }
         }
       }
@@ -116,9 +124,9 @@
           "text": { "value": "Formal\nrate" },
           "align": { "value": "center" },
           "baseline": { "value": "middle" },
-          "fontSize": { "value": 13 },
+          "fontSize": { "value": 14 },
           "fontWeight": { "value": 650 },
-          "fill": { "value": "#5a6670" },
+          "fill": { "value": "#4a5863" },
           "lineBreak": { "value": "\\n" }
         }
       }

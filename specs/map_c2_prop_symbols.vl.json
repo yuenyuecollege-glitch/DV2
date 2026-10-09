@@ -1,15 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C2 — Proportional symbol map of Census 2021 volunteer counts by state/territory. Same Albers AU projection as C1.",
+  "description": "C2 — Proportional symbol map of Census 2021 volunteer counts by state and territory. Same Albers Australia projection as C1.",
   "width": "container",
-  "height": 560,
-  "padding": { "left": 8, "right": 8, "top": 36, "bottom": 80 },
+  "height": 680,
+  "padding": { "left": 4, "right": 4, "top": 8, "bottom": 68 },
   "projection": {
     "type": "conicEqualArea",
     "rotate": [-132, 0],
     "parallels": [-18, -36],
-    "scale": 580,
-    "center": [0, -28]
+    "scale": 980,
+    "center": [0, -27.5]
   },
   "layer": [
     {
@@ -19,8 +19,8 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#d9e3e6",
-        "stroke": "#f7f8f6",
+        "fill": "#d0ecef",
+        "stroke": "#f5f7f4",
         "strokeWidth": 1
       }
     },
@@ -29,9 +29,9 @@
       "mark": {
         "type": "circle",
         "filled": true,
-        "fill": "#0f6b6d",
-        "fillOpacity": 0.78,
-        "stroke": "#0a4547",
+        "fill": "#00838f",
+        "fillOpacity": 0.7,
+        "stroke": "#004d40",
         "strokeWidth": 0.9
       },
       "encoding": {
@@ -41,40 +41,48 @@
           "field": "volunteers",
           "type": "quantitative",
           "scale": {
-            "type": "sqrt",
-            "range": [100, 3200]
+            "type": "linear",
+            "range": [60, 1600]
           },
           "legend": {
-            "title": "Volunteers",
+            "title": "Number of volunteers",
             "orient": "bottom",
             "direction": "horizontal",
             "values": [50000, 300000, 800000],
-            "format": ",.0s",
-            "offset": 8,
-            "symbolFillColor": "#0f6b6d",
-            "symbolStrokeColor": "#0a4547"
+            "format": ",.0f",
+            "offset": 4,
+            "symbolFillColor": "#00838f",
+            "symbolStrokeColor": "#004d40"
           }
         },
         "tooltip": [
-          { "field": "state", "type": "nominal", "title": "State / territory" },
-          { "field": "volunteers", "type": "quantitative", "title": "Volunteers", "format": "," },
-          { "field": "rate_pct", "type": "quantitative", "title": "Rate (%)", "format": ".1f" }
+          { "field": "state", "type": "nominal", "title": "State or territory" },
+          { "field": "volunteers", "type": "quantitative", "title": "Number of volunteers", "format": "," },
+          { "field": "rate_pct", "type": "quantitative", "title": "Volunteering rate (%)", "format": ".1f" }
         ]
       }
     },
     {
-      "data": { "url": "data/state_volunteer_centroids.csv" },
+      "data": {
+        "values": [
+          {
+            "longitude": 148.5,
+            "latitude": -30.5,
+            "label": "Largest pools sit in the south-east"
+          }
+        ]
+      },
       "mark": {
         "type": "text",
-        "fontSize": 12,
-        "fontWeight": 600,
-        "dy": -1
+        "fontSize": 13,
+        "fontWeight": 700,
+        "align": "left"
       },
       "encoding": {
         "longitude": { "field": "longitude", "type": "quantitative" },
         "latitude": { "field": "latitude", "type": "quantitative" },
-        "text": { "field": "state_abbr" },
-        "color": { "value": "#15202b" }
+        "text": { "field": "label" },
+        "color": { "value": "#004d40" }
       }
     }
   ],
