@@ -1,18 +1,25 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C10 — Multi-line / line of total formal volunteer hours, 2019–2025 (basic idiom).",
+  "description": "C10 — Line of total formal volunteer hours, 2019–2025 (basic idiom).",
   "width": "container",
-  "height": 280,
+  "height": 420,
+  "padding": { "left": 8, "right": 24, "top": 24, "bottom": 16 },
   "data": { "url": "data/gss_formal_hours_trend.csv" },
+  "transform": [
+    {
+      "calculate": "datum.year === 2020 ? 'dip' : datum.year === 2025 ? 'peak' : 'other'",
+      "as": "tone"
+    }
+  ],
   "layer": [
     {
-      "mark": { "type": "line", "strokeWidth": 2.6, "color": "#0f6b6d" },
+      "mark": { "type": "line", "strokeWidth": 4.5, "color": "#0f6b6d" },
       "encoding": {
         "x": {
           "field": "year",
           "type": "ordinal",
           "title": null,
-          "axis": { "labelAngle": 0 }
+          "axis": { "labelAngle": 0, "labelFontWeight": 600 }
         },
         "y": {
           "field": "total_hours_million",
@@ -36,27 +43,40 @@
       "mark": {
         "type": "circle",
         "filled": true,
-        "size": 90,
-        "color": "#0f6b6d",
-        "opacity": 1
+        "size": 280,
+        "opacity": 1,
+        "stroke": "#f7f8f6",
+        "strokeWidth": 2
       },
       "encoding": {
         "x": { "field": "year", "type": "ordinal" },
-        "y": { "field": "total_hours_million", "type": "quantitative" }
+        "y": { "field": "total_hours_million", "type": "quantitative" },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": {
+            "domain": ["dip", "peak", "other"],
+            "range": ["#c47a3a", "#0f6b6d", "#5a8a8c"]
+          },
+          "legend": null
+        }
       }
     },
     {
       "mark": {
         "type": "text",
-        "dy": -14,
-        "fontSize": 12,
-        "fontWeight": 600,
-        "color": "#0a4547"
+        "dy": -18,
+        "fontSize": 14,
+        "fontWeight": 700
       },
       "encoding": {
         "x": { "field": "year", "type": "ordinal" },
         "y": { "field": "total_hours_million", "type": "quantitative" },
-        "text": { "field": "total_hours_million", "type": "quantitative", "format": ".0f" }
+        "text": { "field": "total_hours_million", "type": "quantitative", "format": ".0f" },
+        "color": {
+          "condition": { "test": "datum.tone === 'dip'", "value": "#8a5528" },
+          "value": "#0a4547"
+        }
       }
     }
   ]

@@ -2,11 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "C9 — Heatmap of annual hours band by age among formal volunteers, GSS 2025 Table 12.",
   "width": "container",
-  "height": 320,
+  "height": 420,
+  "padding": { "left": 8, "right": 8, "top": 16, "bottom": 16 },
   "data": { "url": "data/gss_hours_by_age_heatmap.csv" },
   "layer": [
     {
-      "mark": { "type": "rect", "stroke": "#f7f8f6", "strokeWidth": 1.5 },
+      "mark": { "type": "rect", "stroke": "#f7f8f6", "strokeWidth": 2 },
       "encoding": {
         "y": {
           "field": "age_group",
@@ -30,8 +31,9 @@
           },
           "legend": {
             "title": "Share of age group (%)",
-            "orient": "right",
-            "gradientLength": 120
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 200
           }
         },
         "tooltip": [
@@ -42,7 +44,32 @@
       }
     },
     {
-      "mark": { "type": "text", "fontSize": 11, "fontWeight": 600 },
+      "transform": [
+        {
+          "filter": "datum.age_group === '65 years and over' && datum.hours_band === '100 hours or more'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "filled": false,
+        "stroke": "#c47a3a",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "nominal",
+          "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"]
+        },
+        "x": {
+          "field": "hours_band",
+          "type": "nominal",
+          "sort": ["1-20 hours", "21-99 hours", "100 hours or more"]
+        }
+      }
+    },
+    {
+      "mark": { "type": "text", "fontSize": 13, "fontWeight": 700 },
       "encoding": {
         "y": {
           "field": "age_group",

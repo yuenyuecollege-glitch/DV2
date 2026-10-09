@@ -12,15 +12,16 @@
       ],
       "header": {
         "title": null,
-        "labelFontSize": 13,
+        "labelFontSize": 14,
         "labelFontWeight": 600,
-        "labelPadding": 8
+        "labelPadding": 10,
+        "labelLimit": 280
       }
     }
   },
   "spec": {
-    "width": 220,
-    "height": 220,
+    "width": 260,
+    "height": 260,
     "mark": {
       "type": "rect",
       "stroke": "#f7f8f6",

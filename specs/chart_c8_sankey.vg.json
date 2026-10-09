@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "C8 — Sankey / alluvial of Snapshot 2023 formal / informal / both / neither (implied) population shares.",
-  "width": 520,
-  "height": 340,
-  "padding": { "left": 150, "right": 200, "top": 8, "bottom": 8 },
+  "description": "C8 — Sankey: remoteness (left) to formal / not formal (right). Population-weighted ASGS shares × GSS 2025 rates.",
+  "width": 560,
+  "height": 480,
+  "padding": { "left": 140, "right": 160, "top": 12, "bottom": 12 },
   "autosize": { "type": "pad", "contains": "padding" },
   "data": [
-    { "name": "nodes", "url": "data/sankey_nodes.json" },
-    { "name": "links", "url": "data/sankey_links.json" }
+    { "name": "nodes", "url": "data/sankey_remoteness_nodes.json" },
+    { "name": "links", "url": "data/sankey_remoteness_links.json" }
   ],
   "marks": [
     {
@@ -18,14 +18,16 @@
           "path": { "field": "path" },
           "strokeWidth": { "value": 0 },
           "tooltip": {
-            "signal": "datum.dest + ': ' + format(datum.value, '.1f') + '% of adults'"
+            "signal": "datum.label"
           }
         },
         "update": {
           "fill": { "field": "colour" },
-          "fillOpacity": { "value": 0.82 }
+          "fillOpacity": {
+            "signal": "datum.highlight ? 0.95 : 0.72"
+          }
         },
-        "hover": { "fillOpacity": { "value": 0.96 } }
+        "hover": { "fillOpacity": { "value": 0.98 } }
       }
     },
     {

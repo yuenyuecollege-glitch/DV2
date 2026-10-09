@@ -2,7 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "C5 — Lollipop of formal volunteering rate by age, GSS 2025.",
   "width": "container",
-  "height": 300,
+  "height": 420,
+  "padding": { "left": 8, "right": 24, "top": 16, "bottom": 16 },
   "data": { "url": "data/gss_formal_rate_by_age.csv" },
   "transform": [
     {
@@ -12,7 +13,7 @@
   ],
   "layer": [
     {
-      "mark": { "type": "rule", "strokeWidth": 2.2 },
+      "mark": { "type": "rule", "strokeWidth": 3.6 },
       "encoding": {
         "y": {
           "field": "age_group",
@@ -31,7 +32,7 @@
       }
     },
     {
-      "mark": { "type": "circle", "filled": true, "size": 100, "opacity": 1 },
+      "mark": { "type": "circle", "filled": true, "size": 260, "opacity": 1 },
       "encoding": {
         "y": {
           "field": "age_group",
@@ -55,6 +56,28 @@
           { "field": "formal_rate_pct", "type": "quantitative", "title": "Formal (%)", "format": ".1f" },
           { "field": "informal_rate_pct", "type": "quantitative", "title": "Informal (%)", "format": ".1f" }
         ]
+      }
+    },
+    {
+      "transform": [
+        { "filter": "datum.age_group === '45-54' || datum.age_group === '25-34'" }
+      ],
+      "mark": {
+        "type": "text",
+        "dx": 14,
+        "align": "left",
+        "fontSize": 13,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "nominal",
+          "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"]
+        },
+        "x": { "field": "formal_rate_pct", "type": "quantitative" },
+        "text": { "field": "formal_rate_pct", "type": "quantitative", "format": ".0f" },
+        "color": { "value": "#0a4547" }
       }
     }
   ]

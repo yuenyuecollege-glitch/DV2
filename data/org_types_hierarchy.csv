@@ -1,0 +1,16 @@
+parent,organisation_type,share_pct,tone
+Sport & leisure,Sport / recreation,33.3,sport
+Faith & learning,Faith / spiritual,22.9,faith
+Faith & learning,Education,14.2,other
+Faith & learning,Parenting / youth,9.8,other
+Community life,Community / cultural,17.6,community
+Community life,Arts / heritage,6.6,other
+Community life,Other,9.6,other
+Care & emergency,Welfare,6.3,other
+Care & emergency,Environment / animals,5.8,other
+Care & emergency,Emergency,5.6,other
+Care & emergency,Health,4.3,other
+Care & emergency,Aged care,3.8,other
+Care & emergency,Disability,3.2,other
+Civic & work,Business / union,3.5,other
+Civic & work,Law / justice,3.1,other

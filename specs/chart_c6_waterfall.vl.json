@@ -1,0 +1,75 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C6 — Waterfall of formal volunteering rate decline, 2019 → 2020 → 2025 (ABS GSS).",
+  "width": "container",
+  "height": 420,
+  "padding": { "left": 8, "right": 16, "top": 28, "bottom": 16 },
+  "data": { "url": "data/waterfall_formal_rate.csv" },
+  "transform": [
+    {
+      "calculate": "datum.kind === 'change' ? datum.display : datum.display",
+      "as": "label_value"
+    },
+    {
+      "calculate": "datum.kind === 'change' ? format(datum.display, '+.1f') : format(datum.display, '.1f')",
+      "as": "label_text"
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "bar", "cornerRadiusEnd": 2 },
+      "encoding": {
+        "x": {
+          "field": "label",
+          "type": "ordinal",
+          "sort": { "field": "order" },
+          "title": null,
+          "axis": { "labelAngle": 0, "labelFontWeight": 600, "labelLimit": 100 }
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "title": "Formal volunteering rate (%)",
+          "scale": { "domain": [0, 35] }
+        },
+        "y2": { "field": "y1" },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": {
+            "domain": ["start", "mid", "end", "drop"],
+            "range": ["#7a9ea3", "#5a8a8c", "#0f6b6d", "#c47a3a"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "columns": 4,
+            "labelExpr": "datum.value === 'start' ? '2019 level' : datum.value === 'mid' ? '2020 level' : datum.value === 'end' ? '2025 level' : 'Decline'"
+          }
+        },
+        "tooltip": [
+          { "field": "label", "type": "nominal" },
+          { "field": "display", "type": "quantitative", "title": "Value", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontSize": 13,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": { "field": "label", "type": "ordinal", "sort": { "field": "order" } },
+        "y": { "field": "y1", "type": "quantitative" },
+        "text": { "field": "label_text", "type": "nominal" },
+        "color": {
+          "condition": { "test": "datum.kind === 'change'", "value": "#8a5528" },
+          "value": "#0a4547"
+        }
+      }
+    }
+  ]
+}

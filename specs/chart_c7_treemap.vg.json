@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "C7 — Hierarchical treemap of organisation types among formal volunteers, GSS 2025. Parent sectors nest child types.",
+  "width": 720,
+  "height": 480,
+  "padding": 12,
+  "autosize": { "type": "fit", "contains": "padding" },
+  "data": [
+    {
+      "name": "tree",
+      "url": "data/org_types_hierarchy.json",
+      "transform": [
+        { "type": "stratify", "key": "id", "parentKey": "parent" },
+        {
+          "type": "treemap",
+          "field": "value",
+          "sort": { "field": "value", "order": "descending" },
+          "size": [{ "signal": "width" }, { "signal": "height" }],
+          "paddingInner": 3,
+          "paddingOuter": 5,
+          "round": true
+        }
+      ]
+    },
+    {
+      "name": "nodes",
+      "source": "tree",
+      "transform": [{ "type": "filter", "expr": "datum.depth === 1" }]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        { "type": "filter", "expr": "datum.depth === 2" },
+        {
+          "type": "formula",
+          "as": "fill",
+          "expr": "datum.tone === 'sport' ? '#0f6b6d' : datum.tone === 'faith' ? '#1a7a7c' : datum.tone === 'community' ? '#3d8b8e' : '#7a9ea3'"
+        },
+        {
+          "type": "formula",
+          "as": "cx",
+          "expr": "(datum.x0 + datum.x1) / 2"
+        },
+        {
+          "type": "formula",
+          "as": "cy",
+          "expr": "(datum.y0 + datum.y1) / 2"
+        },
+        {
+          "type": "formula",
+          "as": "showLabel",
+          "expr": "(datum.x1 - datum.x0) > 68 && (datum.y1 - datum.y0) > 34"
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": { "data": "nodes" },
+      "encode": {
+        "enter": {
+          "x": { "field": "x0" },
+          "y": { "field": "y0" },
+          "x2": { "field": "x1" },
+          "y2": { "field": "y1" },
+          "fill": { "value": "#e8ecea" },
+          "stroke": { "value": "#f7f8f6" },
+          "strokeWidth": { "value": 2 }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": { "data": "leaves" },
+      "encode": {
+        "enter": {
+          "x": { "field": "x0" },
+          "y": { "field": "y0" },
+          "x2": { "field": "x1" },
+          "y2": { "field": "y1" },
+          "stroke": { "value": "#f7f8f6" },
+          "strokeWidth": { "value": 1.5 },
+          "tooltip": {
+            "signal": "datum.id + ' (' + datum.parent + '): ' + format(datum.value, '.1f') + '% of formal volunteers'"
+          }
+        },
+        "update": {
+          "fill": { "field": "fill" },
+          "fillOpacity": { "value": 0.95 }
+        },
+        "hover": { "fillOpacity": { "value": 1 } }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "leaves" },
+      "encode": {
+        "enter": {
+          "x": { "field": "cx" },
+          "y": { "field": "cy" },
+          "align": { "value": "center" },
+          "baseline": { "value": "middle" },
+          "text": {
+            "signal": "datum.showLabel ? datum.id + ' ' + format(datum.value, '.0f') + '%' : ''"
+          },
+          "fill": { "value": "#f7f8f6" },
+          "fontSize": { "value": 12 },
+          "fontWeight": { "value": 600 },
+          "limit": { "signal": "max(20, datum.x1 - datum.x0 - 8)" }
+        }
+      }
+    }
+  ]
+}

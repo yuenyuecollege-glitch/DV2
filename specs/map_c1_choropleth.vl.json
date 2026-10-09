@@ -1,16 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C1 — Choropleth of Census 2021 formal volunteering rate (%) by SA4. Albers / conic equal-area for Australia (Course Notes: equal-area for rates; conic for mid-latitude landscape).",
-  "title": {
-    "text": "Where volunteering rates are highest",
-    "subtitle": "Share of people 15+ who did unpaid voluntary work for an organisation (Census 2021). Colour is a rate, not a count."
-  },
+  "description": "C1 — Choropleth of Census 2021 formal volunteering rate (%) by SA4. Albers / conic equal-area for Australia.",
   "width": "container",
-  "height": 480,
+  "height": 560,
+  "padding": { "left": 8, "right": 8, "top": 36, "bottom": 64 },
   "projection": {
     "type": "conicEqualArea",
     "rotate": [-132, 0],
-    "parallels": [-18, -36]
+    "parallels": [-18, -36],
+    "scale": 600,
+    "center": [0, -28]
   },
   "layer": [
     {
@@ -39,9 +38,10 @@
           },
           "legend": {
             "title": "Volunteering rate (%)",
-            "orient": "bottom-left",
+            "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 160,
+            "gradientLength": 220,
+            "offset": 8,
             "format": ".0f"
           }
         },
@@ -83,6 +83,7 @@
     }
   ],
   "config": {
-    "view": { "stroke": null }
+    "view": { "stroke": null },
+    "legend": { "padding": 4 }
   }
 }

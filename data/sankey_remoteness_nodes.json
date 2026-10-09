@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Major cities",
+    "value": 71.8,
+    "x": 20,
+    "y": 20,
+    "w": 16,
+    "h": 294.38,
+    "mid_y": 167.19,
+    "label_x": 12,
+    "align": "right",
+    "side": "left"
+  },
+  {
+    "name": "Inner regional",
+    "value": 18.1,
+    "x": 20,
+    "y": 324.38,
+    "w": 16,
+    "h": 74.21,
+    "mid_y": 361.49,
+    "label_x": 12,
+    "align": "right",
+    "side": "left"
+  },
+  {
+    "name": "Outer regional",
+    "value": 8.1,
+    "x": 20,
+    "y": 408.59,
+    "w": 16,
+    "h": 33.21,
+    "mid_y": 425.19,
+    "label_x": 12,
+    "align": "right",
+    "side": "left"
+  },
+  {
+    "name": "Remote",
+    "value": 2.0,
+    "x": 20,
+    "y": 451.8,
+    "w": 16,
+    "h": 8.2,
+    "mid_y": 455.9,
+    "label_x": 12,
+    "align": "right",
+    "side": "left"
+  },
+  {
+    "name": "Formal volunteer",
+    "value": 22.8,
+    "x": 420,
+    "y": 20,
+    "w": 16,
+    "h": 98.0,
+    "mid_y": 69.0,
+    "label_x": 444,
+    "align": "left",
+    "side": "right"
+  },
+  {
+    "name": "Did not (formal)",
+    "value": 77.2,
+    "x": 420,
+    "y": 128.0,
+    "w": 16,
+    "h": 332.0,
+    "mid_y": 294.0,
+    "label_x": 444,
+    "align": "left",
+    "side": "right"
+  }
+]

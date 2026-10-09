@@ -1,0 +1,6 @@
+order,label,y0,y1,kind,display,tone
+0,2019 rate,0,29.5,level,29.5,start
+1,2019→2020,24.8,29.5,change,-4.7,drop
+2,2020 rate,0,24.8,level,24.8,mid
+3,2020→2025,22.6,24.8,change,-2.2,drop
+4,2025 rate,0,22.6,level,22.6,end

@@ -1,17 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C2 — Proportional symbol map of Census 2021 volunteer counts by state/territory. Same Albers AU projection as C1. Size encodes counts (Course Notes: prop symbols for totals).",
-  "title": {
-    "text": "Where the volunteer headcount sits",
-    "subtitle": "Circle area is the count of people who volunteered (Census 2021). NSW and Victoria hold the largest pools — rates tell a different story."
-  },
-  "width": 480,
-  "height": 400,
+  "description": "C2 — Proportional symbol map of Census 2021 volunteer counts by state/territory. Same Albers AU projection as C1.",
+  "width": "container",
+  "height": 560,
+  "padding": { "left": 8, "right": 8, "top": 36, "bottom": 80 },
   "projection": {
     "type": "conicEqualArea",
     "rotate": [-132, 0],
     "parallels": [-18, -36],
-    "scale": 720,
+    "scale": 580,
     "center": [0, -28]
   },
   "layer": [
@@ -45,13 +42,17 @@
           "type": "quantitative",
           "scale": {
             "type": "sqrt",
-            "range": [80, 2800]
+            "range": [100, 3200]
           },
           "legend": {
             "title": "Volunteers",
-            "orient": "bottom-left",
-            "values": [50000, 250000, 750000],
-            "format": ",.0s"
+            "orient": "bottom",
+            "direction": "horizontal",
+            "values": [50000, 300000, 800000],
+            "format": ",.0s",
+            "offset": 8,
+            "symbolFillColor": "#0f6b6d",
+            "symbolStrokeColor": "#0a4547"
           }
         },
         "tooltip": [
@@ -65,7 +66,7 @@
       "data": { "url": "data/state_volunteer_centroids.csv" },
       "mark": {
         "type": "text",
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": 600,
         "dy": -1
       },
@@ -78,6 +79,7 @@
     }
   ],
   "config": {
-    "view": { "stroke": null }
+    "view": { "stroke": null },
+    "legend": { "padding": 4 }
   }
 }

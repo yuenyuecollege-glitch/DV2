@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C4 — Cleveland dot plot: formal volunteering rate by remoteness, GSS 2025. Remote Australia highlighted.",
+  "width": "container",
+  "height": 360,
+  "padding": { "left": 8, "right": 48, "top": 28, "bottom": 16 },
+  "data": { "url": "data/gss_formal_rate_by_remoteness.csv" },
+  "transform": [
+    { "filter": "datum.remoteness !== 'Total'" },
+    {
+      "calculate": "datum.remoteness === 'Remote' ? 'highlight' : 'other'",
+      "as": "tone"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1.2,
+        "color": "#d5d8cc",
+        "opacity": 0.9
+      },
+      "encoding": {
+        "y": {
+          "field": "remoteness",
+          "type": "nominal",
+          "sort": ["Major cities", "Inner regional", "Outer regional", "Remote"],
+          "title": null
+        },
+        "x": { "datum": 15 },
+        "x2": { "datum": 38 }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "opacity": 1,
+        "stroke": "#f7f8f6",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "remoteness",
+          "type": "nominal",
+          "sort": ["Major cities", "Inner regional", "Outer regional", "Remote"]
+        },
+        "x": {
+          "field": "formal_rate_pct",
+          "type": "quantitative",
+          "title": "Formal volunteering rate (%)",
+          "scale": { "domain": [15, 38] }
+        },
+        "size": {
+          "condition": { "test": "datum.tone === 'highlight'", "value": 420 },
+          "value": 280
+        },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": {
+            "domain": ["highlight", "other"],
+            "range": ["#0f6b6d", "#9aadb2"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "labelExpr": "datum.value === 'highlight' ? 'Remote Australia (34.0%)' : 'Cities & regional'"
+          }
+        },
+        "tooltip": [
+          { "field": "remoteness", "type": "nominal", "title": "Remoteness" },
+          { "field": "formal_rate_pct", "type": "quantitative", "title": "Formal rate (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dx": 16,
+        "align": "left",
+        "fontSize": 13,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "remoteness",
+          "type": "nominal",
+          "sort": ["Major cities", "Inner regional", "Outer regional", "Remote"]
+        },
+        "x": { "field": "formal_rate_pct", "type": "quantitative" },
+        "text": { "field": "formal_rate_pct", "type": "quantitative", "format": ".1f" },
+        "color": {
+          "condition": { "test": "datum.tone === 'highlight'", "value": "#0a4547" },
+          "value": "#5a6670"
+        }
+      }
+    }
+  ]
+}

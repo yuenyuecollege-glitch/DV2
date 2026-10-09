@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C4 — Radial bars (arc): formal volunteering rate by remoteness, GSS 2025. Remote Australia highlighted.",
+  "width": 440,
+  "height": 440,
+  "padding": 28,
+  "data": { "url": "data/gss_formal_rate_by_remoteness.csv" },
+  "transform": [
+    { "filter": "datum.remoteness !== 'Total'" },
+    {
+      "calculate": "datum.remoteness === 'Remote' ? 'highlight' : 'other'",
+      "as": "tone"
+    }
+  ],
+  "mark": {
+    "type": "arc",
+    "innerRadius": 48,
+    "cornerRadius": 3,
+    "padAngle": 0.03,
+    "tooltip": true
+  },
+  "encoding": {
+    "theta": {
+      "field": "remoteness",
+      "type": "nominal",
+      "sort": ["Major cities", "Inner regional", "Outer regional", "Remote"],
+      "title": null
+    },
+    "radius": {
+      "field": "formal_rate_pct",
+      "type": "quantitative",
+      "scale": { "type": "linear", "zero": true, "rangeMin": 70, "rangeMax": 200 },
+      "legend": null
+    },
+    "color": {
+      "field": "tone",
+      "type": "nominal",
+      "scale": {
+        "domain": ["highlight", "other"],
+        "range": ["#0f6b6d", "#9aadb2"]
+      },
+      "legend": {
+        "title": null,
+        "orient": "bottom",
+        "direction": "horizontal",
+        "labelExpr": "datum.value === 'highlight' ? 'Remote Australia (34.0%)' : 'Cities & regional'"
+      }
+    },
+    "tooltip": [
+      { "field": "remoteness", "type": "nominal", "title": "Remoteness" },
+      { "field": "formal_rate_pct", "type": "quantitative", "title": "Formal rate (%)", "format": ".1f" }
+    ]
+  },
+  "config": {
+    "view": { "stroke": null }
+  }
+}

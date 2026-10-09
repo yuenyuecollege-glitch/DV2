@@ -9,6 +9,7 @@ const THEME = {
     subtitleFont: "Source Sans 3",
     subtitleFontSize: 12,
     subtitleColor: "#5a6670",
+    offset: 8,
   },
   axis: {
     labelFont: "Source Sans 3",
@@ -28,6 +29,7 @@ const THEME = {
     titleColor: "#15202b",
     labelFontSize: 12,
     titleFontSize: 12,
+    symbolSize: 120,
   },
   header: {
     labelFont: "Source Sans 3",
@@ -37,14 +39,16 @@ const THEME = {
   view: { stroke: "transparent" },
 };
 
+const SPEC_VERSION = "20261007i";
+
 const CHARTS = [
   ["#map-c1", "specs/map_c1_choropleth.vl.json"],
   ["#map-c2", "specs/map_c2_prop_symbols.vl.json"],
   ["#map-c3", "specs/map_c3_dot_density.vl.json"],
-  ["#chart-c4", "specs/chart_c4_dumbbell.vl.json"],
+  ["#chart-c4", "specs/chart_c4_radial.vg.json"],
   ["#chart-c5", "specs/chart_c5_lollipop.vl.json"],
-  ["#chart-c6", "specs/chart_c6_slope.vl.json"],
-  ["#chart-c7", "specs/chart_c7_treemap.vl.json"],
+  ["#chart-c6", "specs/chart_c6_waterfall.vl.json"],
+  ["#chart-c7", "specs/chart_c7_treemap.vg.json"],
   ["#chart-c8", "specs/chart_c8_sankey.vg.json"],
   ["#chart-c9", "specs/chart_c9_heatmap.vl.json"],
   ["#chart-c10", "specs/chart_c10_hours_line.vl.json"],
@@ -63,7 +67,8 @@ function embedAll() {
     CHARTS.map(([selector, spec]) => {
       const el = document.querySelector(selector);
       if (!el) return Promise.resolve();
-      return vegaEmbed(el, spec, options).catch((err) => {
+      const bust = `${spec}?v=${SPEC_VERSION}`;
+      return vegaEmbed(el, bust, options).catch((err) => {
         el.textContent =
           "This chart could not be loaded. Open the page over http://, not as a local file.";
         console.error(spec, err);

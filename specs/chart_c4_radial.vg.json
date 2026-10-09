@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "C4 — Radial bar chart: formal volunteering rate by remoteness, GSS 2025. Remote Australia highlighted.",
+  "width": 420,
+  "height": 420,
+  "padding": 40,
+  "autosize": { "type": "pad", "contains": "padding" },
+  "data": [
+    {
+      "name": "table",
+      "url": "data/gss_formal_rate_by_remoteness.csv",
+      "format": { "type": "csv", "parse": { "formal_rate_pct": "number" } },
+      "transform": [
+        { "type": "filter", "expr": "datum.remoteness !== 'Total'" },
+        {
+          "type": "formula",
+          "as": "tone",
+          "expr": "datum.remoteness === 'Remote' ? 'highlight' : 'other'"
+        },
+        {
+          "type": "window",
+          "ops": ["row_number"],
+          "as": ["idx"]
+        },
+        {
+          "type": "formula",
+          "as": "theta0",
+          "expr": "(datum.idx - 1) * (PI / 2) - PI / 2"
+        },
+        {
+          "type": "formula",
+          "as": "theta1",
+          "expr": "datum.idx * (PI / 2) - PI / 2 - 0.06"
+        },
+        {
+          "type": "formula",
+          "as": "outer",
+          "expr": "70 + (datum.formal_rate_pct / 40) * 140"
+        },
+        {
+          "type": "formula",
+          "as": "labelR",
+          "expr": "datum.outer + 18"
+        },
+        {
+          "type": "formula",
+          "as": "mid",
+          "expr": "(datum.theta0 + datum.theta1) / 2"
+        },
+        {
+          "type": "formula",
+          "as": "lx",
+          "expr": "datum.labelR * cos(datum.mid)"
+        },
+        {
+          "type": "formula",
+          "as": "ly",
+          "expr": "datum.labelR * sin(datum.mid)"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": ["highlight", "other"],
+      "range": ["#0f6b6d", "#9aadb2"]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": { "data": "table" },
+      "encode": {
+        "enter": {
+          "x": { "signal": "width / 2" },
+          "y": { "signal": "height / 2" },
+          "startAngle": { "field": "theta0" },
+          "endAngle": { "field": "theta1" },
+          "innerRadius": { "value": 52 },
+          "outerRadius": { "field": "outer" },
+          "cornerRadius": { "value": 4 },
+          "fill": { "scale": "color", "field": "tone" },
+          "tooltip": {
+            "signal": "datum.remoteness + ': ' + format(datum.formal_rate_pct, '.1f') + '%'"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "table" },
+      "encode": {
+        "enter": {
+          "x": { "signal": "width / 2 + datum.lx" },
+          "y": { "signal": "height / 2 + datum.ly" },
+          "text": {
+            "signal": "datum.remoteness + '\\n' + format(datum.formal_rate_pct, '.1f') + '%'"
+          },
+          "align": { "value": "center" },
+          "baseline": { "value": "middle" },
+          "fontSize": { "value": 12 },
+          "fontWeight": { "value": 600 },
+          "fill": { "value": "#15202b" },
+          "lineBreak": { "value": "\\n" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "x": { "signal": "width / 2" },
+          "y": { "signal": "height / 2" },
+          "text": { "value": "Formal\nrate" },
+          "align": { "value": "center" },
+          "baseline": { "value": "middle" },
+          "fontSize": { "value": 13 },
+          "fontWeight": { "value": 650 },
+          "fill": { "value": "#5a6670" },
+          "lineBreak": { "value": "\\n" }
+        }
+      }
+    }
+  ]
+}

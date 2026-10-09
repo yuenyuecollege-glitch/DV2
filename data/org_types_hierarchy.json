@@ -1,0 +1,127 @@
+[
+  {
+    "id": "Organisations",
+    "value": 0,
+    "tone": ""
+  },
+  {
+    "id": "Care & emergency",
+    "parent": "Organisations",
+    "value": 0,
+    "tone": ""
+  },
+  {
+    "id": "Civic & work",
+    "parent": "Organisations",
+    "value": 0,
+    "tone": ""
+  },
+  {
+    "id": "Community life",
+    "parent": "Organisations",
+    "value": 0,
+    "tone": ""
+  },
+  {
+    "id": "Faith & learning",
+    "parent": "Organisations",
+    "value": 0,
+    "tone": ""
+  },
+  {
+    "id": "Sport & leisure",
+    "parent": "Organisations",
+    "value": 0,
+    "tone": ""
+  },
+  {
+    "id": "Sport / recreation",
+    "parent": "Sport & leisure",
+    "value": 33.3,
+    "tone": "sport"
+  },
+  {
+    "id": "Faith / spiritual",
+    "parent": "Faith & learning",
+    "value": 22.9,
+    "tone": "faith"
+  },
+  {
+    "id": "Education",
+    "parent": "Faith & learning",
+    "value": 14.2,
+    "tone": "other"
+  },
+  {
+    "id": "Parenting / youth",
+    "parent": "Faith & learning",
+    "value": 9.8,
+    "tone": "other"
+  },
+  {
+    "id": "Community / cultural",
+    "parent": "Community life",
+    "value": 17.6,
+    "tone": "community"
+  },
+  {
+    "id": "Arts / heritage",
+    "parent": "Community life",
+    "value": 6.6,
+    "tone": "other"
+  },
+  {
+    "id": "Other",
+    "parent": "Community life",
+    "value": 9.6,
+    "tone": "other"
+  },
+  {
+    "id": "Welfare",
+    "parent": "Care & emergency",
+    "value": 6.3,
+    "tone": "other"
+  },
+  {
+    "id": "Environment / animals",
+    "parent": "Care & emergency",
+    "value": 5.8,
+    "tone": "other"
+  },
+  {
+    "id": "Emergency",
+    "parent": "Care & emergency",
+    "value": 5.6,
+    "tone": "other"
+  },
+  {
+    "id": "Health",
+    "parent": "Care & emergency",
+    "value": 4.3,
+    "tone": "other"
+  },
+  {
+    "id": "Aged care",
+    "parent": "Care & emergency",
+    "value": 3.8,
+    "tone": "other"
+  },
+  {
+    "id": "Disability",
+    "parent": "Care & emergency",
+    "value": 3.2,
+    "tone": "other"
+  },
+  {
+    "id": "Business / union",
+    "parent": "Civic & work",
+    "value": 3.5,
+    "tone": "other"
+  },
+  {
+    "id": "Law / justice",
+    "parent": "Civic & work",
+    "value": 3.1,
+    "tone": "other"
+  }
+]

@@ -2,15 +2,20 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "C12 — Diverging bars: reasons for vs against formal volunteering, GSS 2025.",
   "width": "container",
-  "height": 420,
+  "height": 520,
+  "padding": { "left": 8, "right": 40, "top": 28, "bottom": 16 },
   "data": { "url": "data/reasons_diverging.csv" },
   "transform": [
     {
       "calculate": "datum.polarity === 'for' ? 'For volunteering' : 'Against volunteering'",
       "as": "side"
+    },
+    {
+      "calculate": "datum.reason === 'Help others or community' || datum.reason === 'No time' ? 1 : 0.72",
+      "as": "bar_opacity"
     }
   ],
-  "mark": { "type": "bar", "cornerRadiusEnd": 2 },
+  "mark": { "type": "bar", "cornerRadiusEnd": 3 },
   "encoding": {
     "y": {
       "field": "reason",
@@ -40,6 +45,7 @@
         "labelLimit": 200
       }
     },
+    "opacity": { "field": "bar_opacity", "type": "quantitative", "legend": null },
     "tooltip": [
       { "field": "reason", "type": "nominal" },
       { "field": "side", "type": "nominal" },

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20261007i">
 </head>
 <body>
   <header class="site-header">
@@ -28,7 +28,7 @@
     <header class="hero wrap">
       <p class="kicker">Volunteer organisations · Australia</p>
       <h1>Who still shows up?</h1>
-      <p class="dek">Formal volunteering through organisations has slipped since before COVID — but Australians still give hundreds of millions of hours, and regional communities lean on volunteers more than the big cities.</p>
+      <p class="dek">Formal volunteering through organisations has slipped since before COVID — but Australians still give hundreds of millions of hours across sport, faith and community groups, and regional places lean on volunteers more than the big cities.</p>
       <div class="heroes">
         <div class="hero-stat">
           <b>22.6%</b>
@@ -48,37 +48,44 @@
 
     <!-- SECTION 1 -->
     <section id="where">
-      <div class="wrap">
+      <div class="wrap story-column">
         <div class="section-head">
           <p class="num">01 — Locate</p>
           <div>
             <h2>Where people still volunteer</h2>
-            <p class="lede">Participation is uneven. Census 2021 maps show regional SA4s with higher rates, while absolute headcounts pile into New South Wales and Victoria. The GSS remoteness gap is stark: remote Australia volunteers formally at 34%, major cities at 21%.</p>
+            <p class="lede">Participation is uneven. Census 2021 maps show regional SA4s with higher <span class="hl">rates</span>, while absolute <span class="hl">headcounts</span> pile into New South Wales and Victoria. The GSS remoteness gap is stark: remote Australia volunteers formally at <span class="hl">34%</span>, major cities at <span class="hl">21%</span>.</p>
           </div>
         </div>
 
         <div class="chart-block">
-          <h3 class="chart-title">C1 · Choropleth — volunteering <em>rate</em> by SA4</h3>
-          <p class="chart-note">Census 2021. Colour is the share of people 15+ who volunteered through an organisation (excluding not-stated answers). Equal-area Albers so region size stays comparable.</p>
-          <div id="map-c1" class="chart-frame"></div>
-        </div>
-
-        <div class="pair">
-          <div class="chart-block">
-            <h3 class="chart-title">C2 · Proportional symbols — volunteer <em>counts</em></h3>
-            <p class="chart-note">Same projection. Circle area encodes headcount. Rates and counts tell different stories.</p>
-            <div id="map-c2" class="chart-frame tall"></div>
+          <div class="chart-head">
+            <h3 class="chart-title">C1 · Choropleth — rates peak outside the capitals</h3>
+            <p class="chart-note">Census 2021. Colour is the share of people 15+ who volunteered through an organisation. The <span class="hl">Wheat Belt (26.8%)</span> stands out; parts of <span class="hl">Sydney SW sit near 6.8%</span>. Equal-area Albers keeps region size comparable.</p>
           </div>
-          <div class="chart-block">
-            <h3 class="chart-title">C3 · Dot density — counts as dots</h3>
-            <p class="chart-note">One dot ≈ 10,000 Census volunteers, placed inside each state. Density shows absolute scale, not rate.</p>
-            <div id="map-c3" class="chart-frame tall"></div>
-          </div>
+          <div id="map-c1" class="chart-frame map"></div>
         </div>
 
         <div class="chart-block">
-          <h3 class="chart-title">C4 · Cities fall behind the bush</h3>
-          <p class="chart-note">ABS General Social Survey 2025. One gap, two places: major cities at 20.9% versus remote Australia at 34.0%.</p>
+          <div class="chart-head">
+            <h3 class="chart-title">C2 · Proportional symbols — where the <em>numbers</em> sit</h3>
+            <p class="chart-note">Same projection. Circle area encodes headcount. <span class="hl">NSW and Victoria</span> hold the largest pools — rates and counts tell different stories about where organisations find people.</p>
+          </div>
+          <div id="map-c2" class="chart-frame map"></div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-head">
+            <h3 class="chart-title">C3 · Dot density — each dot is about <span class="hl">10,000</span> volunteers</h3>
+            <p class="chart-note">One dot ≈ <span class="hl">10,000</span> Census volunteers, placed inside each state. Denser clusters show absolute scale for volunteer-involving organisations — not higher rates.</p>
+          </div>
+          <div id="map-c3" class="chart-frame map"></div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-head">
+            <h3 class="chart-title">C4 · Radial bars — remoteness lifts the rate</h3>
+            <p class="chart-note">ABS General Social Survey 2025. Bar length from the centre is the formal rate. <span class="hl">Remote Australia hits 34.0%</span> while <span class="hl">major cities sit at 20.9%</span> — a <span class="hl">13-point</span> spread that organisations feel when recruiting outside the capitals.</p>
+          </div>
           <div id="chart-c4" class="chart-frame short"></div>
           <p class="callout">Regional and remote communities still lean harder on formal volunteering than the capitals — even after a national decline.</p>
         </div>
@@ -87,104 +94,118 @@
 
     <!-- SECTION 2 -->
     <section id="who">
-      <div class="wrap">
+      <div class="wrap story-column">
         <div class="section-head">
           <p class="num">02 — Identify</p>
           <div>
-            <h2>Who steps forward</h2>
-            <p class="lede">Mid-life adults carry formal volunteering. People aged 45–54 sit at 28%; those aged 25–34 are at 13%. Since 2019, both formal and informal rates have softened — formal more sharply.</p>
+            <h2>Who steps forward — and how that changed</h2>
+            <p class="lede">Mid-life adults carry formal volunteering. People aged <span class="hl">45–54 sit at 28%</span>; those aged <span class="hl">25–34 are at 13%</span>. Since <span class="hl">2019</span>, the formal organisation rate fell from <span class="hl">29.5%</span> to <span class="hl">22.6%</span> — a signal for how organisations recruit.</p>
           </div>
         </div>
 
-        <div class="pair">
-          <div class="chart-block">
-            <h3 class="chart-title">C5 · Rate by age</h3>
-            <p class="chart-note">Lollipop of GSS 2025 formal rates. Highlighted ends: peak mid-life vs the softest working-age band.</p>
-            <div id="chart-c5" class="chart-frame"></div>
+        <div class="chart-block">
+          <div class="chart-head">
+            <h3 class="chart-title">C5 · Lollipop — mid-life leads; young adults lag</h3>
+            <p class="chart-note">GSS 2025 formal rates by age. Highlighted ends: peak mid-life at <span class="hl">28%</span> versus the softest working-age band at <span class="hl">13%</span>.</p>
           </div>
-          <div class="chart-block">
-            <h3 class="chart-title">C6 · 2019 to 2025 slope</h3>
-            <p class="chart-note">Formal volunteering fell from 29.5% to 22.6%. Informal help also eased, but stayed higher.</p>
-            <div id="chart-c6" class="chart-frame"></div>
+          <div id="chart-c5" class="chart-frame medium"></div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-head">
+            <h3 class="chart-title">C6 · Waterfall — the formal rate stepped down twice</h3>
+            <p class="chart-note">From <span class="hl">29.5% in 2019</span> to <span class="hl">24.8% in 2020</span> (<span class="hl">−4.7 pts</span>), then to <span class="hl">22.6% in 2025</span> (<span class="hl">−2.2 pts</span>). Organisation volunteering did not bounce with hours — the participation base stayed thinner.</p>
           </div>
+          <div id="chart-c6" class="chart-frame medium"></div>
         </div>
       </div>
     </section>
 
     <!-- SECTION 3 -->
     <section id="what">
-      <div class="wrap">
+      <div class="wrap story-column">
         <div class="section-head">
           <p class="num">03 — Compare</p>
           <div>
-            <h2>What they do</h2>
-            <p class="lede">Among formal volunteers, sport and recreation organisations lead (33%), then faith groups (23%) and community or cultural groups (18%). Broader “volunteering” also includes informal help — Snapshot 2023 estimates how those roles overlap.</p>
+            <h2>What they do — sectors and community activities</h2>
+            <p class="lede">Among formal volunteers, <span class="hl">sport and recreation</span> organisations lead (<span class="hl">33%</span>), nested under sport &amp; leisure alongside faith &amp; learning and community life. Where people live also shapes who shows up formally: cities hold most of the headcount even when remote rates run higher.</p>
           </div>
         </div>
 
         <div class="chart-block">
-          <h3 class="chart-title">C7 · Organisation types among formal volunteers</h3>
-          <p class="chart-note">Treemap sized by GSS 2025 shares. People can name more than one organisation type, so shares need not sum to 100.</p>
-          <div id="chart-c7" class="chart-frame"></div>
+          <div class="chart-head">
+            <h3 class="chart-title">C7 · Hierarchical treemap — sectors nest the organisation mix</h3>
+            <p class="chart-note">Organisation types among formal volunteers (GSS 2025), nested by parent sector. Tile area is share of volunteers. Teal marks the leading home: <span class="hl">sport / recreation at 33%</span>. People can name more than one type, so shares need not sum to 100.</p>
+          </div>
+          <div id="chart-c7" class="chart-frame tall"></div>
         </div>
 
         <div class="chart-block">
-          <h3 class="chart-title">C8 · Formal, informal, both — or neither</h3>
-          <p class="chart-note">Snapshot of Volunteering in Australia 2023. Flows are population shares. “Neither” is implied from formal-only + informal-only + both (about 50%); Snapshot’s headline “any volunteering” figure (64%) uses a broader framing — treat this diagram as a structure view, not an ABS official split.</p>
-          <div id="chart-c8" class="chart-frame"></div>
+          <div class="chart-head">
+            <h3 class="chart-title">C8 · Sankey — remoteness feeds the formal pool</h3>
+            <p class="chart-note">Four remoteness areas (left) flow to formal vs not (right). Flows are approximate adult shares: ASGS population weights × GSS 2025 rates. <span class="hl">Major cities still supply most formal volunteers</span> (~15 of every 100 adults), even though <span class="hl">remote rates are highest</span>.</p>
+          </div>
+          <div id="chart-c8" class="chart-frame tall"></div>
         </div>
       </div>
     </section>
 
     <!-- SECTION 4 -->
     <section id="hours">
-      <div class="wrap">
+      <div class="wrap story-column">
         <div class="section-head">
           <p class="num">04 — Summarise</p>
           <div>
-            <h2>Hours and contribution</h2>
-            <p class="lede">The participation <em>rate</em> stayed soft, but total formal hours recovered: 596 million in 2019, 490 million in 2020, 618 million in 2025. Older volunteers are more likely to give 100 hours or more. Charities report about 3.77 million volunteers in their own books.</p>
-          </div>
-        </div>
-
-        <div class="pair">
-          <div class="chart-block">
-            <h3 class="chart-title">C9 · Hours by age</h3>
-            <p class="chart-note">Heatmap: among formal volunteers, share in each annual hours band.</p>
-            <div id="chart-c9" class="chart-frame"></div>
-          </div>
-          <div class="chart-block">
-            <h3 class="chart-title">C10 · Total hours recovered</h3>
-            <p class="chart-note">National formal hours (millions). 2019 and 2020 from the ABS GSS release narrative; 2025 from Table 12.1.</p>
-            <div id="chart-c10" class="chart-frame"></div>
+            <h2>Hours and contribution to Australian society</h2>
+            <p class="lede">The participation <em>rate</em> stayed soft, but total formal hours recovered: <span class="hl">596 million</span> in 2019, <span class="hl">490 million</span> in 2020, <span class="hl">618 million</span> in 2025. Older volunteers give more hours. Charities report about <span class="hl">3.77 million</span> volunteers on their books — volunteering’s organisational footprint.</p>
           </div>
         </div>
 
         <div class="chart-block">
-          <h3 class="chart-title">C11 · About 23 in 100 — or 14 in 100?</h3>
-          <p class="chart-note">Unit charts. Left: GSS 2025 formal volunteering (~23%). Right: Census 2021 (~14%), collected during COVID-affected conditions with a different question timing. Same idea, different instruments — do not splice them into one trend.</p>
-          <div id="chart-c11" class="chart-frame"></div>
-          <p class="callout">ACNC’s 2023 charity filings count about <strong>3.77 million</strong> volunteers on organisation books — overlapping with, but not identical to, the ABS person surveys.</p>
+          <div class="chart-head">
+            <h3 class="chart-title">C9 · Heatmap — who gives the long hours</h3>
+            <p class="chart-note">Among formal volunteers, share in each annual hours band by age. Darker cells show where contribution concentrates — people <span class="hl">65+</span> are most likely to give <span class="hl">100 hours or more (44%)</span>.</p>
+          </div>
+          <div id="chart-c9" class="chart-frame medium"></div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-head">
+            <h3 class="chart-title">C10 · Line — total hours recovered after the COVID dip</h3>
+            <p class="chart-note">National formal hours (millions). Highlight: the <span class="hl">2020 dip to 490M</span>, then recovery to <span class="hl">618M in 2025</span> — contribution bounced even while the rate stayed softer than 2019.</p>
+          </div>
+          <div id="chart-c10" class="chart-frame medium"></div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-head">
+            <h3 class="chart-title">C11 · Waffle — about <span class="hl">23 in 100</span>, or <span class="hl">14 in 100</span>?</h3>
+            <p class="chart-note">Unit charts. Left: GSS 2025 formal volunteering (~<span class="hl">23%</span>). Right: Census 2021 (~<span class="hl">14%</span>), collected under COVID-affected conditions. Same idea, different instruments — do not splice them into one trend.</p>
+          </div>
+          <div id="chart-c11" class="chart-frame tall"></div>
+          <p class="callout">ACNC’s 2023 charity filings count about <span class="hl">3.77 million</span> volunteers on organisation books — overlapping with, but not identical to, the ABS person surveys. That is the organised face of contribution.</p>
         </div>
       </div>
     </section>
 
     <!-- SECTION 5 -->
     <section id="why-not">
-      <div class="wrap">
+      <div class="wrap story-column">
         <div class="section-head">
           <p class="num">05 — Explain</p>
           <div>
             <h2>Why people don’t — and what organisations face</h2>
-            <p class="lede">Among non-volunteers, “no time” (47%) and “not interested or no need” (36%) dominate. Volunteers themselves most often cite helping others and personal satisfaction. Time pressure and motivation sit on opposite sides of the same ledger.</p>
+            <p class="lede">Among non-volunteers, <span class="hl">“no time” (47%)</span> and <span class="hl">“not interested or no need” (36%)</span> dominate. Volunteers themselves most often cite helping others and personal satisfaction. Time pressure and motivation sit on opposite sides of the same ledger for volunteer organisations.</p>
           </div>
         </div>
 
         <div class="chart-block">
-          <h3 class="chart-title">C12 · Reasons for and against</h3>
-          <p class="chart-note">Diverging bars from GSS 2025. Right: reasons among formal volunteers. Left: reasons among people who did not volunteer formally. People could choose more than one reason.</p>
-          <div id="chart-c12" class="chart-frame"></div>
-          <p class="callout">For volunteer-involving organisations, the message is plain: schedule flexibility fights “no time,” and a clear ask fights “never been asked” — while sport, faith and community groups remain the largest formal homes for help.</p>
+          <div class="chart-head">
+            <h3 class="chart-title">C12 · Diverging bars — reasons for and against</h3>
+            <p class="chart-note">GSS 2025. Right: reasons among formal volunteers — led by <span class="hl">helping others (65%)</span>. Left: reasons among people who did not volunteer formally — led by <span class="hl">no time (47%)</span>. People could choose more than one reason.</p>
+          </div>
+          <div id="chart-c12" class="chart-frame tall"></div>
+          <p class="callout">For volunteer-involving organisations, the message is plain: schedule flexibility fights “no time,” and a clear ask fights “never been asked” — while <span class="hl">sport, faith and community</span> groups remain the largest formal homes for help.</p>
         </div>
       </div>
     </section>
@@ -195,7 +216,7 @@
         <li>ABS <em>General Social Survey: Summary Results, Australia, 2025</em> (Tables 1, 7, 10–13) — <a href="https://www.abs.gov.au/statistics/people/people-and-communities/general-social-survey-summary-results-australia/latest-release">abs.gov.au</a></li>
         <li>ABS Census 2021 unpaid voluntary work (G23 / VOLWP) + ASGS Edition 3 boundaries — <a href="https://www.abs.gov.au/census/find-census-data/datapacks">DataPacks</a> · <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files">boundaries</a></li>
         <li>ABS Measuring What Matters — Social connections (longer formal-rate series) — <a href="https://www.abs.gov.au/statistics/measuring-what-matters/measuring-what-matters-themes-and-indicators/cohesive/social-connections">abs.gov.au</a></li>
-        <li>Snapshot of Volunteering in Australia 2023 (formal / informal structure) — Volunteering peak bodies / TCfV</li>
+        <li>ABS Remoteness Structure population shares (approximate weights for C8 flows) × GSS remoteness rates</li>
         <li>ACNC <em>Australian Charities Report</em> 11th edition (charity volunteer totals)</li>
       </ul>
       <p>Maps use an Australia-centred Albers / conic equal-area projection (<code>rotate [-132, 0]</code>, <code>parallels [-18, -36]</code>). Mercator is not used for these thematic maps.</p>
@@ -205,10 +226,10 @@
         <a href="specs/map_c1_choropleth.vl.json">C1</a> ·
         <a href="specs/map_c2_prop_symbols.vl.json">C2</a> ·
         <a href="specs/map_c3_dot_density.vl.json">C3</a> ·
-        <a href="specs/chart_c4_dumbbell.vl.json">C4</a> ·
+        <a href="specs/chart_c4_radial.vg.json">C4</a> ·
         <a href="specs/chart_c5_lollipop.vl.json">C5</a> ·
-        <a href="specs/chart_c6_slope.vl.json">C6</a> ·
-        <a href="specs/chart_c7_treemap.vl.json">C7</a> ·
+        <a href="specs/chart_c6_waterfall.vl.json">C6</a> ·
+        <a href="specs/chart_c7_treemap.vg.json">C7</a> ·
         <a href="specs/chart_c8_sankey.vg.json">C8</a> ·
         <a href="specs/chart_c9_heatmap.vl.json">C9</a> ·
         <a href="specs/chart_c10_hours_line.vl.json">C10</a> ·
@@ -221,6 +242,6 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261007i"></script>
 </body>
 </html>
