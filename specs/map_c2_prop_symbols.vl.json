@@ -3,7 +3,7 @@
   "description": "C2 — Proportional symbol map of Census 2021 volunteer counts by state and territory. Same Albers Australia projection as C1.",
   "width": "container",
   "height": 680,
-  "padding": { "left": 4, "right": 4, "top": 8, "bottom": 68 },
+  "padding": { "left": 8, "right": 8, "top": 28, "bottom": 68 },
   "projection": {
     "type": "conicEqualArea",
     "rotate": [-132, 0],
@@ -66,9 +66,33 @@
       "data": {
         "values": [
           {
-            "longitude": 148.5,
-            "latitude": -30.5,
-            "label": "Largest pools sit in the south east"
+            "longitude": 149.5,
+            "latitude": -33.8,
+            "longitude2": 155.5,
+            "latitude2": -32.8
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#0d1b24",
+        "strokeWidth": 1.2,
+        "opacity": 0.8
+      },
+      "encoding": {
+        "longitude": { "field": "longitude", "type": "quantitative" },
+        "latitude": { "field": "latitude", "type": "quantitative" },
+        "longitude2": { "field": "longitude2" },
+        "latitude2": { "field": "latitude2" }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "longitude": 156.2,
+            "latitude": -31.8,
+            "label": "Largest pools sit\nin the south east"
           }
         ]
       },
@@ -76,7 +100,10 @@
         "type": "text",
         "fontSize": 15,
         "fontWeight": 700,
-        "align": "left"
+        "align": "left",
+        "baseline": "middle",
+        "lineBreak": "\n",
+        "clip": false
       },
       "encoding": {
         "longitude": { "field": "longitude", "type": "quantitative" },
@@ -87,7 +114,7 @@
     }
   ],
   "config": {
-    "view": { "stroke": null },
+    "view": { "stroke": null, "clip": false },
     "legend": { "padding": 4 }
   }
 }
