@@ -68,13 +68,13 @@
           {
             "longitude": 148.5,
             "latitude": -30.5,
-            "label": "Largest pools sit in the south-east"
+            "label": "Largest pools sit in the south east"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "fontSize": 13,
+        "fontSize": 15,
         "fontWeight": 700,
         "align": "left"
       },

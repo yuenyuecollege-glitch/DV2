@@ -3,11 +3,11 @@ const THEME = {
   font: "Source Sans 3",
   title: {
     font: "Literata",
-    fontSize: 17,
+    fontSize: 20,
     fontWeight: 650,
     color: "#0d1b24",
     subtitleFont: "Source Sans 3",
-    subtitleFontSize: 13,
+    subtitleFontSize: 15,
     subtitleColor: "#4a5863",
     offset: 8,
   },
@@ -19,27 +19,29 @@ const THEME = {
     domainColor: "#cfd6d0",
     gridColor: "#e8ecea",
     tickColor: "#cfd6d0",
-    labelFontSize: 13,
-    titleFontSize: 13,
+    labelFontSize: 15,
+    titleFontSize: 15,
   },
   legend: {
     labelFont: "Source Sans 3",
     titleFont: "Source Sans 3",
     labelColor: "#4a5863",
     titleColor: "#0d1b24",
-    labelFontSize: 13,
-    titleFontSize: 13,
+    labelFontSize: 15,
+    titleFontSize: 15,
     symbolSize: 120,
   },
   header: {
     labelFont: "Source Sans 3",
     titleFont: "Literata",
     labelColor: "#0d1b24",
+    labelFontSize: 15,
+    titleFontSize: 16,
   },
   view: { stroke: "transparent" },
 };
 
-const SPEC_VERSION = "20261009m";
+const SPEC_VERSION = "20261009ad";
 
 const CHARTS = [
   ["#map-c1", "specs/map_c1_choropleth.vl.json"],
@@ -47,7 +49,7 @@ const CHARTS = [
   ["#map-c3", "specs/map_c3_dot_density.vl.json"],
   ["#chart-c4", "specs/chart_c4_radial.vg.json"],
   ["#chart-c5", "specs/chart_c5_lollipop.vl.json"],
-  ["#chart-c6", "specs/chart_c6_rate_line.vl.json"],
+  ["#chart-c6", "specs/chart_c6_rate_bar.vl.json"],
   ["#chart-c7", "specs/chart_c7_treemap.vg.json"],
   ["#chart-c8", "specs/chart_c8_sankey.vg.json"],
   ["#chart-c9", "specs/chart_c9_heatmap.vl.json"],
@@ -98,9 +100,17 @@ function prepareSpec(selector, spec, width, height) {
 
   if (selector === "#chart-c4") {
     const side = Math.min(width, height);
-    const chart = Math.max(380, Math.min(500, side - 120));
+    const chart = Math.max(400, Math.min(500, side - 100));
     next.width = chart;
     next.height = chart;
+  }
+
+  if (selector === "#chart-c9") {
+    const plotW = Math.max(400, Math.min(480, width - 320));
+    const plotH = Math.max(300, Math.min(380, height - 100));
+    next.width = plotW;
+    next.height = plotH;
+    next.padding = { left: 24, right: 118, top: 12, bottom: 12 };
   }
 
   return next;

@@ -64,7 +64,7 @@
       },
       "mark": {
         "type": "text",
-        "fontSize": 13,
+        "fontSize": 15,
         "fontWeight": 700,
         "align": "left"
       },

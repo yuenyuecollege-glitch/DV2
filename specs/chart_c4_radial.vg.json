@@ -3,7 +3,7 @@
   "description": "C4 — Radial bar chart: formal volunteering rate by remoteness, General Social Survey 2025.",
   "width": 480,
   "height": 480,
-  "padding": 70,
+  "padding": 28,
   "autosize": { "type": "pad", "contains": "padding" },
   "data": [
     {
@@ -40,7 +40,7 @@
         {
           "type": "formula",
           "as": "labelR",
-          "expr": "datum.outer + 44"
+          "expr": "datum.outer + 36"
         },
         {
           "type": "formula",
@@ -108,10 +108,11 @@
           "text": { "field": "labelText" },
           "align": { "field": "labelAlign" },
           "baseline": { "value": "middle" },
-          "fontSize": { "value": 13 },
+          "fontSize": { "value": 15 },
           "fontWeight": { "value": 700 },
           "fill": { "value": "#0d1b24" },
-          "lineBreak": { "value": "\\n" }
+          "lineBreak": { "value": "\n" },
+          "lineHeight": { "value": 18 }
         }
       }
     },
@@ -124,10 +125,11 @@
           "text": { "value": "Formal\nrate" },
           "align": { "value": "center" },
           "baseline": { "value": "middle" },
-          "fontSize": { "value": 14 },
+          "fontSize": { "value": 16 },
           "fontWeight": { "value": 650 },
           "fill": { "value": "#4a5863" },
-          "lineBreak": { "value": "\\n" }
+          "lineBreak": { "value": "\n" },
+          "lineHeight": { "value": 20 }
         }
       }
     }

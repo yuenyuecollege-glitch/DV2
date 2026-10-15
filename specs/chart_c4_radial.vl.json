@@ -3,7 +3,7 @@
   "description": "C4 — Radial bars (arc): formal volunteering rate by remoteness, GSS 2025. Remote Australia highlighted.",
   "width": 440,
   "height": 440,
-  "padding": 28,
+  "padding": 26,
   "data": { "url": "data/gss_formal_rate_by_remoteness.csv" },
   "transform": [
     { "filter": "datum.remoteness !== 'Total'" },

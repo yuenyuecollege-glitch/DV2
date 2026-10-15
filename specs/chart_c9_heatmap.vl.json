@@ -1,9 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "C9 — Heatmap of annual hours band by age among formal volunteers, General Social Survey 2025.",
-  "width": "container",
-  "height": 420,
-  "padding": { "left": 8, "right": 8, "top": 16, "bottom": 16 },
+  "width": 460,
+  "height": 360,
+  "padding": { "left": 24, "right": 118, "top": 12, "bottom": 12 },
+  "autosize": { "type": "pad", "contains": "padding" },
   "data": { "url": "data/gss_hours_by_age_heatmap.csv" },
   "layer": [
     {
@@ -13,20 +14,30 @@
           "field": "age_group",
           "type": "nominal",
           "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"],
-          "title": null
+          "title": null,
+          "axis": {
+            "labelExpr": "datum.value === '65 years and over' ? '65 and over' : replace(datum.value, '-', ' to ')",
+            "labelLimit": 110,
+            "labelPadding": 10,
+            "minExtent": 108,
+            "maxExtent": 108
+          }
         },
         "x": {
           "field": "hours_band",
           "type": "nominal",
           "sort": ["1-20 hours", "21-99 hours", "100 hours or more"],
           "title": "Hours in the prior 12 months",
-          "axis": { "labelAngle": 0 }
+          "axis": {
+            "labelAngle": 0,
+            "labelExpr": "replace(datum.value, '-', ' to ')"
+          }
         },
         "color": {
           "field": "share_pct",
           "type": "quantitative",
           "scale": {
-            "range": ["#fce4ec", "#f48fb1", "#ec407a", "#c2185b", "#880e4f"],
+            "range": ["#fff0f3", "#ffc1d4", "#ff5a8a", "#c2185b", "#4a0028"],
             "domain": [15, 55]
           },
           "legend": {
@@ -69,31 +80,18 @@
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.age_group === '65 years and over' && datum.hours_band === '100 hours or more'"
-        }
-      ],
       "mark": {
         "type": "text",
-        "fontSize": 12,
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 15,
         "fontWeight": 700,
-        "dy": -28,
-        "align": "center"
-      },
-      "encoding": {
-        "y": {
-          "field": "age_group",
-          "type": "nominal",
-          "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"]
-        },
-        "x": {
-          "field": "hours_band",
-          "type": "nominal",
-          "sort": ["1-20 hours", "21-99 hours", "100 hours or more"]
-        },
-        "text": { "value": "Long hours concentrate here" },
-        "color": { "value": "#1565c0" }
+        "fill": "#1565c0",
+        "lineBreak": "\n",
+        "lineHeight": 18,
+        "text": "Long hours\nconcentrate here",
+        "x": { "expr": "width + 14" },
+        "y": { "expr": "height - 36" }
       }
     }
   ]

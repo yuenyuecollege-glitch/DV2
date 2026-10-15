@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C10 — Waterfall of total formal volunteer hours, 2019 → 2020 → 2025. Zero baseline; floating bars show the pandemic drop and recovery.",
+  "width": "container",
+  "height": 420,
+  "padding": { "left": 8, "right": 16, "top": 40, "bottom": 16 },
+  "data": { "url": "data/waterfall_formal_hours.csv" },
+  "transform": [
+    {
+      "calculate": "datum.kind === 'change' ? format(datum.display, '+.1f') + 'M' : format(datum.display, '.1f') + 'M'",
+      "as": "label_text"
+    },
+    {
+      "calculate": "datum.tone === 'drop' ? 'Pandemic drop' : datum.tone === 'rise' ? 'Above 2019' : ''",
+      "as": "insight"
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "bar", "cornerRadiusEnd": 2, "width": { "band": 0.72 } },
+      "encoding": {
+        "x": {
+          "field": "label",
+          "type": "ordinal",
+          "sort": { "field": "order" },
+          "title": null,
+          "axis": {
+            "labelAngle": 0,
+            "labelFontWeight": 600,
+            "labelLimit": 140,
+            "labelOverlap": false
+          },
+          "scale": { "paddingInner": 0.28, "paddingOuter": 0.12 }
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "title": "Total formal volunteer hours (millions)",
+          "scale": { "domain": [0, 700], "zero": true },
+          "axis": { "tickCount": 8 }
+        },
+        "y2": { "field": "y1" },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": {
+            "domain": ["start", "mid", "end", "drop", "rise"],
+            "range": ["#66bb6a", "#ff8a65", "#2e7d32", "#e64a19", "#43a047"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "labelExpr": "datum.value === 'start' ? '2019 level' : datum.value === 'mid' ? '2020 level' : datum.value === 'end' ? '2025 level' : datum.value === 'drop' ? 'Decline' : 'Recovery'"
+          }
+        },
+        "tooltip": [
+          { "field": "label", "type": "nominal", "title": "Step" },
+          {
+            "field": "display",
+            "type": "quantitative",
+            "title": "Hours (millions)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 15,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "label",
+          "type": "ordinal",
+          "sort": { "field": "order" }
+        },
+        "y": { "field": "y1", "type": "quantitative" },
+        "text": { "field": "label_text", "type": "nominal" },
+        "color": {
+          "condition": { "test": "datum.tone === 'drop'", "value": "#bf360c" },
+          "value": "#1b5e20"
+        }
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.insight !== ''" }],
+      "mark": {
+        "type": "text",
+        "dy": -34,
+        "fontSize": 14,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "label",
+          "type": "ordinal",
+          "sort": { "field": "order" }
+        },
+        "y": { "field": "y1", "type": "quantitative" },
+        "text": { "field": "insight" },
+        "color": {
+          "condition": { "test": "datum.tone === 'drop'", "value": "#bf360c" },
+          "value": "#1b5e20"
+        }
+      }
+    }
+  ]
+}

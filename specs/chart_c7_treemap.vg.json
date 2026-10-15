@@ -50,7 +50,12 @@
         {
           "type": "formula",
           "as": "showLabel",
-          "expr": "(datum.x1 - datum.x0) > 72 && (datum.y1 - datum.y0) > 32"
+          "expr": "(datum.x1 - datum.x0) > 56 && (datum.y1 - datum.y0) > 28"
+        },
+        {
+          "type": "formula",
+          "as": "labelText",
+          "expr": "datum.short + ' ' + format(datum.value, '.0f') + '%'"
         }
       ]
     }
@@ -103,12 +108,11 @@
           "align": { "value": "center" },
           "baseline": { "value": "middle" },
           "text": {
-            "signal": "datum.showLabel ? datum.id + ' ' + format(datum.value, '.0f') + '%' : ''"
+            "signal": "datum.showLabel ? datum.labelText : ''"
           },
           "fill": { "value": "#f7f8f6" },
-          "fontSize": { "value": 13 },
-          "fontWeight": { "value": 600 },
-          "limit": { "signal": "max(20, datum.x1 - datum.x0 - 8)" }
+          "fontSize": { "value": 14 },
+          "fontWeight": { "value": 600 }
         }
       }
     }

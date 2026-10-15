@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261009m">
+  <link rel="stylesheet" href="css/style.css?v=20261009ad">
 </head>
 <body>
   <header class="site-header">
@@ -41,7 +41,7 @@
         <div class="hero-stat">
           <b>618M</b>
           <span>formal volunteer hours in the prior
-            12 months — above the 2020 dip</span>
+            12 months, above the 2020 dip</span>
         </div>
         <div class="hero-stat">
           <b>34% vs 21%</b>
@@ -56,13 +56,12 @@
     <section id="where">
       <div class="wrap story-column">
         <div class="section-head">
-          <p class="num">01 — Locate</p>
-          <div>
-            <h2>Where people still volunteer</h2>
+          <h2>Where people still volunteer</h2>
+          <div class="section-insights">
             <p class="lede">Participation is uneven across the map.
               Census 2021 shows regional areas with higher <span class="hl">rates</span>.
-              Absolute <span class="hl">headcounts</span> pile into New South Wales and Victoria.
-              The General Social Survey remoteness gap is stark:
+              Absolute <span class="hl">headcounts</span> pile into New South Wales and Victoria.</p>
+            <p class="lede">The General Social Survey remoteness gap is stark:
               remote Australia volunteers formally at <span class="hl">34%</span>;
               major cities sit at <span class="hl">21%</span>.</p>
           </div>
@@ -72,10 +71,14 @@
           <div class="chart-head">
             <h3 class="chart-title">C1 · Rates peak outside the capitals</h3>
             <div class="chart-insights">
-              <p class="chart-note">The wheat belt holds the highest rate
-                outside the capitals — regional communities still show up.</p>
-              <p class="chart-note">Greater Sydney’s south-west holds the softest
-                capital-city band — place shapes who steps forward.</p>
+              <p class="chart-note">The Western Australia Wheat Belt is the darkest tile on the map,
+                with a formal volunteering rate of <span class="hl-val hl-c1">26.8%</span>.
+                That is the highest band outside the capital cities and shows how
+                regional communities still show up when organisations need help.</p>
+              <p class="chart-note">Greater Sydney’s south west is the lightest capital city band,
+                at only <span class="hl-val hl-c1-soft">6.8%</span>.
+                Place still shapes who steps forward: the same city region can hold
+                both busy suburbs and neighbourhoods where formal volunteering stays soft.</p>
             </div>
           </div>
           <div id="map-c1" class="chart-frame map"></div>
@@ -85,10 +88,15 @@
           <div class="chart-head">
             <h3 class="chart-title">C2 · Where the <em>numbers</em> sit</h3>
             <div class="chart-insights">
-              <p class="chart-note">New South Wales and Victoria hold the largest
-                volunteer pools even when their rates sit mid-pack.</p>
-              <p class="chart-note">Rates and counts tell different stories —
-                organisations hunting headcount look south-east first.</p>
+              <p class="chart-note">New South Wales alone holds about
+                <span class="hl-val hl-c2">858,000</span> Census volunteers,
+                and Victoria about <span class="hl-val hl-c2">712,000</span>.
+                Those two states carry the largest pools even though their rates
+                sit mid pack rather than at the top of the ranking.</p>
+              <p class="chart-note">Rates and counts tell different stories for recruiters.
+                Organisations hunting headcount look to the south east first,
+                because circle size here tracks absolute volunteers, not the
+                share of each state’s adult population.</p>
             </div>
           </div>
           <div id="map-c2" class="chart-frame map"></div>
@@ -98,10 +106,13 @@
           <div class="chart-head">
             <h3 class="chart-title">C3 · Absolute scale across the states</h3>
             <div class="chart-insights">
-              <p class="chart-note">Denser clusters mark where volunteers live in
-                absolute numbers — not where rates run highest.</p>
-              <p class="chart-note">Eastern states dominate the visual weight;
-                remote Australia stays sparse despite higher rates.</p>
+              <p class="chart-note">Each dot stands for
+                <span class="hl-val hl-c3">10,000</span> volunteers.
+                Denser clusters mark where people live in absolute numbers,
+                which is a different story from where rates run highest on the choropleth.</p>
+              <p class="chart-note">Eastern states dominate the visual weight on this map.
+                Remote Australia stays sparse in the scatter even when its
+                formal rate is higher, so scale and rate need to be read together.</p>
             </div>
           </div>
           <div id="map-c3" class="chart-frame map"></div>
@@ -111,16 +122,18 @@
           <div class="chart-head">
             <h3 class="chart-title">C4 · Remoteness lifts the rate</h3>
             <div class="chart-insights">
-              <p class="chart-note">Remote Australia sits furthest from the centre —
-                about <span class="hl">13 percentage points</span> above major cities.</p>
+              <p class="chart-note">Remote Australia sits furthest from the centre at
+                <span class="hl-val hl-c4">34.0%</span>, about
+                <span class="hl-val hl-c4">13</span> percentage points above
+                major cities at <span class="hl-val hl-c4-alt">20.9%</span>.
+                Remoteness still lifts the formal rate after a national decline.</p>
               <p class="chart-note">That gap is what organisations feel when
-                recruiting outside the capitals after a national decline.</p>
+                recruiting outside the capitals. Regional and remote communities
+                lean harder on formal volunteering even while the national rate
+                has softened since 2019.</p>
             </div>
           </div>
           <div id="chart-c4" class="chart-frame short"></div>
-          <p class="callout">Regional and remote communities still lean harder
-            on formal volunteering than the capitals —
-            even after a national decline.</p>
         </div>
       </div>
     </section>
@@ -129,26 +142,29 @@
     <section id="who">
       <div class="wrap story-column">
         <div class="section-head">
-          <p class="num">02 — Identify</p>
-          <div>
-            <h2>Who steps forward — and how that changed</h2>
-            <p class="lede">Mid-life adults carry formal volunteering.
-              People aged <span class="hl">45–54 sit at 28%</span>;
-              those aged <span class="hl">25–34 are at 13%</span>.
-              Since <span class="hl">2019</span>, the formal organisation rate
-              fell from <span class="hl">29.5%</span> to <span class="hl">22.6%</span> —
+          <h2>Who steps forward, and how that changed</h2>
+          <div class="section-insights">
+            <p class="lede">Mid life adults carry formal volunteering.
+              People aged <span class="hl">45 to 54 sit at 28%</span>;
+              those aged <span class="hl">25 to 34 are at 13%</span>.</p>
+            <p class="lede">Since <span class="hl">2019</span>, the formal organisation rate
+              fell from <span class="hl">29.5%</span> to <span class="hl">22.6%</span>,
               a signal for how organisations recruit.</p>
           </div>
         </div>
 
         <div class="chart-block">
           <div class="chart-head">
-            <h3 class="chart-title">C5 · Mid-life leads; young adults lag</h3>
+            <h3 class="chart-title">C5 · Mid life leads; young adults lag</h3>
             <div class="chart-insights">
-              <p class="chart-note">The peak mid-life band carries formal volunteering —
-                that is where organisations still find people.</p>
-              <p class="chart-note">The softest working-age band sits far below —
-                recruiting younger adults remains the harder ask.</p>
+              <p class="chart-note">People aged 45 to 54 sit at
+                <span class="hl-val hl-c5">28.0%</span>, the peak mid life band
+                for formal volunteering. That is still where organisations most
+                often find people ready to give time through a group.</p>
+              <p class="chart-note">People aged 25 to 34 sit at only
+                <span class="hl-val hl-c5-soft">13.1%</span>, the softest
+                working age band on the chart. Recruiting younger adults remains
+                the harder ask for volunteer involving organisations.</p>
             </div>
           </div>
           <div id="chart-c5" class="chart-frame medium"></div>
@@ -158,10 +174,15 @@
           <div class="chart-head">
             <h3 class="chart-title">C6 · The formal rate stepped down and stayed soft</h3>
             <div class="chart-insights">
-              <p class="chart-note">The rate fell through the pandemic year,
-                then eased further — still below the 2019 starting level.</p>
-              <p class="chart-note">Organisation volunteering did not bounce with hours;
-                the participation base stayed thinner.</p>
+              <p class="chart-note">The formal rate fell from
+                <span class="hl-val hl-c6">29.5%</span> in 2019 to
+                <span class="hl-val hl-c6-dip">24.8%</span> in 2020,
+                then eased further to <span class="hl-val hl-c6">22.6%</span> in 2025.
+                The bar heights show a step down that never climbed back to the
+                pre pandemic starting level.</p>
+              <p class="chart-note">Organisation volunteering did not bounce with hours.
+                The participation base stayed thinner even as total hours recovered,
+                so fewer people are carrying the formal load than in 2019.</p>
             </div>
           </div>
           <div id="chart-c6" class="chart-frame medium"></div>
@@ -173,14 +194,13 @@
     <section id="what">
       <div class="wrap story-column">
         <div class="section-head">
-          <p class="num">03 — Compare</p>
-          <div>
-            <h2>What they do — sectors and community activities</h2>
+          <h2>What they do: sectors and community activities</h2>
+          <div class="section-insights">
             <p class="lede">Among formal volunteers,
               <span class="hl">sport and recreation</span> organisations lead (<span class="hl">33%</span>),
               nested under sport and leisure
-              alongside faith and learning and community life.
-              Where people live also shapes who shows up formally:
+              alongside faith and learning and community life.</p>
+            <p class="lede">Where people live also shapes who shows up formally:
               cities hold most of the headcount
               even when remote rates run higher.</p>
           </div>
@@ -190,10 +210,14 @@
           <div class="chart-head">
             <h3 class="chart-title">C7 · Sectors nest the organisation mix</h3>
             <div class="chart-insights">
-              <p class="chart-note">Sport and recreation is the leading home —
-                the largest tile among formal volunteers.</p>
-              <p class="chart-note">People can name more than one type,
-                so shares need not sum to 100%.</p>
+              <p class="chart-note">Sport and recreation is the leading home for
+                formal volunteers, at <span class="hl-val hl-c7">33.3%</span>.
+                It is the largest tile in the treemap and shows how clubs and
+                physical recreation still anchor organised help.</p>
+              <p class="chart-note">People can name more than one organisation type,
+                so the shares need not sum to <span class="hl-val hl-c7">100%</span>.
+                Faith, community and other sectors sit beside sport rather than
+                competing for a single exclusive home.</p>
             </div>
           </div>
           <div id="chart-c7" class="chart-frame tall"></div>
@@ -203,10 +227,14 @@
           <div class="chart-head">
             <h3 class="chart-title">C8 · Remoteness feeds the formal pool</h3>
             <div class="chart-insights">
-              <p class="chart-note">Major cities still supply most formal volunteers —
-                about 15 of every 100 adults.</p>
-              <p class="chart-note">Remote rates are highest,
-                yet the absolute formal pool is still city-led.</p>
+              <p class="chart-note">Major cities still supply most formal volunteers:
+                about <span class="hl-val hl-c8">15.0%</span> of all adults flow
+                from cities into the formal volunteer pool. That thick stream is
+                why city headcount dominates even when city rates sit lower.</p>
+              <p class="chart-note">Remote Australia has the highest rate, yet only
+                about <span class="hl-val hl-c8-hot">0.7%</span> of all adults
+                arrive as remote formal volunteers. Absolute formal capacity is
+                still city led because population weight sits on the coast.</p>
             </div>
           </div>
           <div id="chart-c8" class="chart-frame tall"></div>
@@ -218,18 +246,17 @@
     <section id="hours">
       <div class="wrap story-column">
         <div class="section-head">
-          <p class="num">04 — Summarise</p>
-          <div>
-            <h2>Hours and contribution to Australian society</h2>
+          <h2>Hours and contribution to Australian society</h2>
+          <div class="section-insights">
             <p class="lede">The participation <em>rate</em> stayed soft,
               but total formal hours recovered:
               <span class="hl">596 million</span> in 2019,
               <span class="hl">490 million</span> in 2020,
-              <span class="hl">618 million</span> in 2025.
-              Older volunteers give more hours.
+              <span class="hl">618 million</span> in 2025.</p>
+            <p class="lede">Older volunteers give more hours.
               Charities report about <span class="hl">3.77 million</span>
-              volunteers on their books —
-              that is volunteering’s organisational footprint.</p>
+              volunteers on their books.
+              That is volunteering’s organisational footprint.</p>
           </div>
         </div>
 
@@ -237,10 +264,14 @@
           <div class="chart-head">
             <h3 class="chart-title">C9 · Who gives the long hours</h3>
             <div class="chart-insights">
-              <p class="chart-note">People aged 65 years and over are most likely
-                to give 100 hours or more.</p>
-              <p class="chart-note">Long hours concentrate among older volunteers —
-                contribution is not evenly shared by age.</p>
+              <p class="chart-note">Among volunteers aged 65 years and over,
+                <span class="hl-val hl-c9">43.7%</span> give
+                <span class="hl-val hl-c9">100 hours or more</span> in a year.
+                That cell is the darkest on the heatmap and marks where long
+                contribution concentrates.</p>
+              <p class="chart-note">Younger bands lean toward shorter hours,
+                so contribution is not evenly shared by age. Organisations that
+                rely on deep time still depend heavily on older volunteers.</p>
             </div>
           </div>
           <div id="chart-c9" class="chart-frame medium"></div>
@@ -250,10 +281,14 @@
           <div class="chart-head">
             <h3 class="chart-title">C10 · Total hours recovered after the pandemic dip</h3>
             <div class="chart-insights">
-              <p class="chart-note">2020 is the low point;
-                total hours then climb above the 2019 level.</p>
-              <p class="chart-note">Contribution bounced even while
-                the participation rate stayed softer than 2019.</p>
+              <p class="chart-note">Total formal hours fell to
+                <span class="hl-val hl-c10-dip">490 million</span> in 2020,
+                the low point on the line. By 2025 they climb to
+                <span class="hl-val hl-c10">618 million</span>, above the
+                <span class="hl-val hl-c10">596 million</span> recorded in 2019.</p>
+              <p class="chart-note">Contribution bounced even while the
+                participation rate stayed softer than 2019. Hours recovered
+                faster than the share of adults who formally volunteer.</p>
             </div>
           </div>
           <div id="chart-c10" class="chart-frame medium"></div>
@@ -261,21 +296,19 @@
 
         <div class="chart-block">
           <div class="chart-head">
-            <h3 class="chart-title">C11 · About <span class="hl">23 in 100</span>, or <span class="hl">14 in 100</span>?</h3>
+            <h3 class="chart-title">C11 · About <span class="hl-val hl-c11">23 in 100</span>, or <span class="hl-val hl-c11">14 in 100</span>?</h3>
             <div class="chart-insights">
-              <p class="chart-note">General Social Survey 2025 reads about 23 in 100;
-                Census 2021 reads about 14 in 100.</p>
-              <p class="chart-note">Same idea, different instruments —
-                do not splice them into one trend.</p>
+              <p class="chart-note">The General Social Survey 2025 waffle reads about
+                <span class="hl-val hl-c11">23 in 100</span> adults volunteering
+                through an organisation. That blue share is the survey’s formal
+                participation picture for the latest year.</p>
+              <p class="chart-note">Census 2021 reads about
+                <span class="hl-val hl-c11">14 in 100</span> on the same idea
+                with a different instrument and period. Do not splice the two
+                panels into one trend; they measure related but not identical things.</p>
             </div>
           </div>
           <div id="chart-c11" class="chart-frame tall"></div>
-          <p class="callout">Australian Charities and Not-for-profits Commission
-            2023 charity filings count about
-            <span class="hl">3.77 million</span> volunteers on organisation books —
-            overlapping with, but not identical to,
-            the Australian Bureau of Statistics person surveys.
-            That is the organised face of contribution.</p>
         </div>
       </div>
     </section>
@@ -284,13 +317,12 @@
     <section id="why-not">
       <div class="wrap story-column">
         <div class="section-head">
-          <p class="num">05 — Explain</p>
-          <div>
-            <h2>Why people don’t — and what organisations face</h2>
-            <p class="lede">Among non-volunteers,
+          <h2>Why people don’t, and what organisations face</h2>
+          <div class="section-insights">
+            <p class="lede">Among non volunteers,
               <span class="hl">“no time” (47%)</span> and
-              <span class="hl">“not interested or no need” (36%)</span> dominate.
-              Volunteers themselves most often cite
+              <span class="hl">“not interested or no need” (36%)</span> dominate.</p>
+            <p class="lede">Volunteers themselves most often cite
               helping others and personal satisfaction.
               Time pressure and motivation sit opposite
               on the same ledger for volunteer organisations.</p>
@@ -301,19 +333,18 @@
           <div class="chart-head">
             <h3 class="chart-title">C12 · Reasons for and against</h3>
             <div class="chart-insights">
-              <p class="chart-note">Among formal volunteers, helping others leads —
-                motivation sits on the positive side of the ledger.</p>
-              <p class="chart-note">Among non-volunteers, “no time” leads —
-                schedule flexibility is the main organisational fight.</p>
+              <p class="chart-note">Among formal volunteers, helping others or community
+                leads at <span class="hl-val hl-c12-for">65.2%</span>, with personal
+                satisfaction close behind at <span class="hl-val hl-c12-for">62.8%</span>.
+                Motivation still sits firmly on the positive side of the ledger.</p>
+              <p class="chart-note">Among non volunteers, “no time” leads at
+                <span class="hl-val hl-c12-against">47.0%</span>, and
+                “not interested or no need” follows at
+                <span class="hl-val hl-c12-against">35.5%</span>.
+                Schedule flexibility is the main organisational fight on the against side.</p>
             </div>
           </div>
           <div id="chart-c12" class="chart-frame tall"></div>
-          <p class="callout">For volunteer-involving organisations,
-            the message is plain:
-            schedule flexibility fights “no time,”
-            and a clear ask fights “never been asked” —
-            while <span class="hl">sport, faith and community</span> groups
-            remain the largest formal homes for help.</p>
         </div>
       </div>
     </section>
@@ -321,13 +352,13 @@
     <footer class="wrap site-footer">
       <h2 class="footer-title">Sources &amp; credits</h2>
       <ul>
-        <li>Australian Bureau of Statistics <em>General Social Survey: Summary Results, Australia, 2025</em> (Tables 1, 7, 10–13) — <a href="https://www.abs.gov.au/statistics/people/people-and-communities/general-social-survey-summary-results-australia/latest-release">abs.gov.au</a></li>
-        <li>Australian Bureau of Statistics Census 2021 unpaid voluntary work plus Australian Statistical Geography Standard Edition 3 boundaries — <a href="https://www.abs.gov.au/census/find-census-data/datapacks">DataPacks</a> · <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files">boundaries</a></li>
-        <li>Australian Bureau of Statistics Measuring What Matters — Social connections (longer formal-rate series) — <a href="https://www.abs.gov.au/statistics/measuring-what-matters/measuring-what-matters-themes-and-indicators/cohesive/social-connections">abs.gov.au</a></li>
+        <li>Australian Bureau of Statistics <em>General Social Survey: Summary Results, Australia, 2025</em> (Tables 1, 7, 10 to 13). <a href="https://www.abs.gov.au/statistics/people/people-and-communities/general-social-survey-summary-results-australia/latest-release">abs.gov.au</a></li>
+        <li>Australian Bureau of Statistics Census 2021 unpaid voluntary work plus Australian Statistical Geography Standard Edition 3 boundaries. <a href="https://www.abs.gov.au/census/find-census-data/datapacks">DataPacks</a> · <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files">boundaries</a></li>
+        <li>Australian Bureau of Statistics Measuring What Matters, Social connections (longer formal rate series). <a href="https://www.abs.gov.au/statistics/measuring-what-matters/measuring-what-matters-themes-and-indicators/cohesive/social-connections">abs.gov.au</a></li>
         <li>Australian Bureau of Statistics Remoteness Structure population shares (approximate weights for C8 flows) times General Social Survey remoteness rates</li>
-        <li>Australian Charities and Not-for-profits Commission <em>Australian Charities Report</em> 11th edition (charity volunteer totals)</li>
+        <li>Australian Charities and Not for profits Commission <em>Australian Charities Report</em> 11th edition (charity volunteer totals)</li>
       </ul>
-      <p>Maps use an Australia-centred Albers / conic equal-area projection (<code>rotate [-132, 0]</code>, <code>parallels [-18, -36]</code>). Mercator is not used for these thematic maps.</p>
+      <p>Maps use an Australia centred Albers / conic equal area projection (<code>rotate [-132, 0]</code>, <code>parallels [-18, -36]</code>). Mercator is not used for these thematic maps.</p>
       <p><strong>Author:</strong> [Your name] · <strong>Date:</strong> September 2026 · FIT3179 Data Visualisation 2</p>
       <p><strong>AI acknowledgement:</strong> Generative AI (Cursor) assisted with data wrangling scripts, Vega-Lite/Vega specifications, page layout, and copy editing. All statistics were taken from the public sources listed above and checked against downloaded tables. See <a href="AI_ACKNOWLEDGEMENT.txt">AI_ACKNOWLEDGEMENT.txt</a>.</p>
       <p class="spec-links">Human-readable specs:
@@ -336,7 +367,7 @@
         <a href="specs/map_c3_dot_density.vl.json">C3</a> ·
         <a href="specs/chart_c4_radial.vg.json">C4</a> ·
         <a href="specs/chart_c5_lollipop.vl.json">C5</a> ·
-        <a href="specs/chart_c6_rate_line.vl.json">C6</a> ·
+        <a href="specs/chart_c6_rate_bar.vl.json">C6</a> ·
         <a href="specs/chart_c7_treemap.vg.json">C7</a> ·
         <a href="specs/chart_c8_sankey.vg.json">C8</a> ·
         <a href="specs/chart_c9_heatmap.vl.json">C9</a> ·
@@ -350,6 +381,6 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-  <script src="js/main.js?v=20261009m"></script>
+  <script src="js/main.js?v=20261009ad"></script>
 </body>
 </html>

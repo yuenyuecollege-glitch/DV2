@@ -1,4 +1,4 @@
-year,total_hours_million,note
-2019,596.0,ABS GSS release narrative (prior comparable survey)
-2020,490.0,ABS GSS release narrative (COVID-affected)
-2025,618.2,ABS GSS 2025 Table 12.1
+year,total_hours_million,note,insight,tone
+2019,596.0,ABS GSS release narrative (prior comparable survey),,other
+2020,490.0,ABS GSS release narrative (COVID-affected),Pandemic low (-17.8%),dip
+2025,618.2,ABS GSS 2025 Table 12.1,Above 2019 (+3.7%),peak

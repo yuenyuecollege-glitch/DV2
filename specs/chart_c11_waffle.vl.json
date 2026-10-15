@@ -19,10 +19,10 @@
       ],
       "header": {
         "title": null,
-        "labelFontSize": 15,
+        "labelFontSize": 17,
         "labelFontWeight": 600,
         "labelPadding": 12,
-        "labelLimit": 420,
+        "labelLimit": 0,
         "labelAlign": "center"
       }
     }

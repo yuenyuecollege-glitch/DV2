@@ -3,21 +3,20 @@
   "description": "C10 — Line of total formal volunteer hours, 2019–2025.",
   "width": "container",
   "height": 420,
-  "padding": { "left": 8, "right": 24, "top": 36, "bottom": 16 },
-  "data": { "url": "data/gss_formal_hours_trend.csv" },
-  "transform": [
-    {
-      "calculate": "datum.year === 2020 ? 'dip' : datum.year === 2025 ? 'peak' : 'other'",
-      "as": "tone"
-    },
-    {
-      "calculate": "datum.year === 2020 ? 'Pandemic low point' : datum.year === 2025 ? 'Hours above the 2019 level' : ''",
-      "as": "insight"
+  "padding": { "left": 8, "right": 24, "top": 16, "bottom": 16 },
+  "data": {
+    "url": "data/gss_formal_hours_trend.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "total_hours_million": "number"
+      }
     }
-  ],
+  },
   "layer": [
     {
-      "mark": { "type": "line", "strokeWidth": 4.5, "color": "#2e7d32" },
+      "mark": { "type": "line", "strokeWidth": 4.5, "color": "#2e7d32", "clip": false },
       "encoding": {
         "x": {
           "field": "year",
@@ -29,7 +28,8 @@
           "field": "total_hours_million",
           "type": "quantitative",
           "title": "Total formal volunteer hours (millions)",
-          "scale": { "domain": [400, 720] }
+          "scale": { "zero": true },
+          "axis": { "tickCount": 7 }
         },
         "tooltip": [
           { "field": "year", "type": "ordinal", "title": "Year" },
@@ -50,7 +50,8 @@
         "size": 280,
         "opacity": 1,
         "stroke": "#f5f7f4",
-        "strokeWidth": 2
+        "strokeWidth": 2,
+        "clip": false
       },
       "encoding": {
         "x": { "field": "year", "type": "ordinal" },
@@ -67,17 +68,20 @@
       }
     },
     {
-      "transform": [{ "filter": "datum.insight !== ''" }],
+      "transform": [{ "filter": "isValid(datum.insight) && datum.insight != ''" }],
       "mark": {
         "type": "text",
-        "dy": -18,
-        "fontSize": 13,
-        "fontWeight": 700
+        "dy": 32,
+        "fontSize": 15,
+        "fontWeight": 700,
+        "baseline": "top",
+        "align": "center",
+        "clip": false
       },
       "encoding": {
         "x": { "field": "year", "type": "ordinal" },
         "y": { "field": "total_hours_million", "type": "quantitative" },
-        "text": { "field": "insight" },
+        "text": { "field": "insight", "type": "nominal" },
         "color": {
           "condition": { "test": "datum.tone === 'dip'", "value": "#bf360c" },
           "value": "#1b5e20"

@@ -22,12 +22,12 @@
       "type": "nominal",
       "sort": { "field": "signed_pct", "order": "descending" },
       "title": null,
-      "axis": { "labelLimit": 340 }
+      "axis": { "labelLimit": 0 }
     },
     "x": {
       "field": "signed_pct",
       "type": "quantitative",
-      "title": "Share of people (%) — left: not volunteering · right: volunteering",
+      "title": "Share of people (%): left not volunteering · right volunteering",
       "axis": { "labelExpr": "replace(format(datum.value, 'd'), '-', '')" }
     },
     "color": {
@@ -42,7 +42,7 @@
         "orient": "top",
         "direction": "horizontal",
         "columns": 2,
-        "labelLimit": 200
+        "labelLimit": 0
       }
     },
     "opacity": { "field": "bar_opacity", "type": "quantitative", "legend": null },

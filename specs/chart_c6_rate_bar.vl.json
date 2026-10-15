@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C6 — Bar chart of formal volunteering rate, 2019–2025 (General Social Survey). Discrete years suit bars; C10 uses a hours waterfall.",
+  "width": "container",
+  "height": 420,
+  "padding": { "left": 8, "right": 28, "top": 36, "bottom": 16 },
+  "data": { "url": "data/gss_formal_rate_trend.csv" },
+  "transform": [
+    { "filter": "datum.year >= 2019" },
+    {
+      "calculate": "datum.year === 2019 ? 'start' : datum.year === 2025 ? 'end' : 'mid'",
+      "as": "tone"
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "bar", "cornerRadiusEnd": 3, "width": { "band": 0.55 } },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "axis": { "labelAngle": 0, "labelFontWeight": 600 }
+        },
+        "y": {
+          "field": "formal_rate_pct",
+          "type": "quantitative",
+          "title": "Formal volunteering rate (%)",
+          "scale": { "domain": [0, 35] }
+        },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": {
+            "domain": ["start", "mid", "end"],
+            "range": ["#66bb6a", "#ff7043", "#2e7d32"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "year", "type": "ordinal", "title": "Year" },
+          {
+            "field": "formal_rate_pct",
+            "type": "quantitative",
+            "title": "Formal volunteering rate (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.year === 2025" }],
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "align": "center",
+        "fontSize": 15,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "formal_rate_pct", "type": "quantitative" },
+        "text": { "value": "Still below the 2019 level" },
+        "color": { "value": "#1b5e20" }
+      }
+    }
+  ]
+}

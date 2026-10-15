@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "C10 — Proportional bubble timeline of total formal volunteer hours, 2019–2025. Circle area encodes hours from a true zero; no truncated position axis.",
+  "width": "container",
+  "height": 420,
+  "padding": { "left": 24, "right": 24, "top": 36, "bottom": 16 },
+  "data": { "url": "data/gss_formal_hours_trend.csv" },
+  "transform": [
+    {
+      "calculate": "datum.year === 2020 ? 'dip' : datum.year === 2025 ? 'peak' : 'start'",
+      "as": "tone"
+    },
+    {
+      "calculate": "format(datum.total_hours_million, '.1f') + 'M'",
+      "as": "hours_label"
+    },
+    {
+      "calculate": "datum.year === 2020 ? 'Pandemic low  −106M' : datum.year === 2025 ? 'Above 2019  +128M' : 'Pre-pandemic level'",
+      "as": "insight"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "opacity": 0.94,
+        "stroke": "#f5f7f4",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "axis": {
+            "labelAngle": 0,
+            "labelFontWeight": 700,
+            "labelFontSize": 16,
+            "ticks": false,
+            "domain": false,
+            "labelPadding": 12
+          },
+          "scale": { "paddingOuter": 0.5 }
+        },
+        "y": {
+          "datum": 0,
+          "type": "quantitative",
+          "axis": null,
+          "scale": { "domain": [-1.2, 1.2] }
+        },
+        "size": {
+          "field": "total_hours_million",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "range": [5000, 22000]
+          },
+          "legend": {
+            "title": "Area ∝ total hours (millions)",
+            "orient": "top",
+            "direction": "horizontal",
+            "values": [490, 600],
+            "format": ".0f",
+            "symbolType": "circle"
+          }
+        },
+        "color": {
+          "field": "tone",
+          "type": "nominal",
+          "scale": {
+            "domain": ["start", "dip", "peak"],
+            "range": ["#43a047", "#e64a19", "#1b5e20"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "year", "type": "ordinal", "title": "Year" },
+          {
+            "field": "total_hours_million",
+            "type": "quantitative",
+            "title": "Total hours (millions)",
+            "format": ".1f"
+          },
+          { "field": "note", "type": "nominal", "title": "Source note" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "fill": "#f5f7f4"
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "datum": 0, "type": "quantitative" },
+        "text": { "field": "hours_label" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 132,
+        "fontSize": 15,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "datum": 0, "type": "quantitative" },
+        "text": { "field": "insight" },
+        "color": {
+          "condition": { "test": "datum.tone === 'dip'", "value": "#bf360c" },
+          "value": "#1b5e20"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null }
+  }
+}

@@ -3,7 +3,8 @@
   "description": "C5 — Lollipop of formal volunteering rate by age, General Social Survey 2025.",
   "width": "container",
   "height": 420,
-  "padding": { "left": 8, "right": 120, "top": 16, "bottom": 16 },
+  "padding": { "left": 12, "right": 168, "top": 12, "bottom": 12 },
+  "autosize": { "type": "fit", "contains": "padding" },
   "data": { "url": "data/gss_formal_rate_by_age.csv" },
   "transform": [
     {
@@ -11,19 +12,27 @@
       "as": "tone"
     },
     {
-      "calculate": "datum.age_group === '45-54' ? 'Peak mid-life band' : datum.age_group === '25-34' ? 'Softest working-age band' : ''",
+      "calculate": "datum.age_group === '45-54' ? 'Peak mid life band' : datum.age_group === '25-34' ? 'Softest working age band' : ''",
       "as": "insight"
     }
   ],
   "layer": [
     {
-      "mark": { "type": "rule", "strokeWidth": 3.6 },
+      "mark": { "type": "rule", "strokeWidth": 3.6, "clip": false },
       "encoding": {
         "y": {
           "field": "age_group",
           "type": "nominal",
           "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65 years and over"],
-          "title": null
+          "title": null,
+          "axis": {
+            "labelExpr": "datum.value === '65 years and over' ? '65 and over' : replace(datum.value, '-', ' to ')",
+            "labelLimit": 110,
+            "labelPadding": 10,
+            "minExtent": 108,
+            "maxExtent": 108,
+            "zindex": 1
+          }
         },
         "x": { "field": "formal_rate_pct", "type": "quantitative" },
         "x2": { "datum": 0 },
@@ -36,7 +45,7 @@
       }
     },
     {
-      "mark": { "type": "circle", "filled": true, "size": 260, "opacity": 1 },
+      "mark": { "type": "circle", "filled": true, "size": 260, "opacity": 1, "clip": false },
       "encoding": {
         "y": {
           "field": "age_group",
@@ -47,7 +56,8 @@
           "field": "formal_rate_pct",
           "type": "quantitative",
           "title": "Formal volunteering rate (%)",
-          "scale": { "domain": [0, 42] }
+          "scale": { "domain": [0, 34], "nice": false },
+          "axis": { "tickCount": 7, "labelFlush": true }
         },
         "color": {
           "field": "tone",
@@ -64,14 +74,16 @@
     },
     {
       "transform": [
-        { "filter": "datum.insight !== ''" }
+        { "filter": "isValid(datum.insight) && datum.insight != ''" }
       ],
       "mark": {
         "type": "text",
         "dx": 14,
         "align": "left",
-        "fontSize": 13,
-        "fontWeight": 700
+        "baseline": "middle",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "clip": false
       },
       "encoding": {
         "y": {
