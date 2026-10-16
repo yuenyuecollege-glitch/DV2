@@ -56,7 +56,7 @@
       "data": {
         "values": [
           { "longitude": 117.0, "latitude": -31.2, "longitude2": 112.5, "latitude2": -28.0 },
-          { "longitude": 150.9, "latitude": -34.0, "longitude2": 155.5, "latitude2": -33.0 }
+          { "longitude": 150.9, "latitude": -34.0, "longitude2": 155.5, "latitude2": -32.5 }
         ]
       },
       "mark": {
@@ -76,14 +76,14 @@
       "data": {
         "values": [
           {
-            "longitude": 106.2,
+            "longitude": 105.2,
             "latitude": -27.0,
-            "label": "Highest rate outside the capitals (26.8%)",
+            "label": "Highest rate outside thecapitals (26.8%)",
             "side": "west"
           },
           {
             "longitude": 161.2,
-            "latitude": -32.5,
+            "latitude": -31.5,
             "label": "Softest capital city band (6.8%)",
             "side": "east"
           }
