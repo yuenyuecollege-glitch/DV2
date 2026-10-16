@@ -43,105 +43,105 @@
   {
     "id": "Sport / recreation",
     "parent": "Sport & leisure",
-    "value": 33.3,
+    "value": 22.3,
     "tone": "sport",
     "short": "Sport"
   },
   {
     "id": "Faith / spiritual",
     "parent": "Faith & learning",
-    "value": 22.9,
+    "value": 15.3,
     "tone": "faith",
     "short": "Faith"
   },
   {
     "id": "Education",
     "parent": "Faith & learning",
-    "value": 14.2,
+    "value": 9.5,
     "tone": "other",
     "short": "Education"
   },
   {
     "id": "Parenting / youth",
     "parent": "Faith & learning",
-    "value": 9.8,
+    "value": 6.6,
     "tone": "other",
     "short": "Parenting"
   },
   {
     "id": "Community / cultural",
     "parent": "Community life",
-    "value": 17.6,
+    "value": 11.8,
     "tone": "community",
     "short": "Community"
   },
   {
     "id": "Arts / heritage",
     "parent": "Community life",
-    "value": 6.6,
+    "value": 4.4,
     "tone": "other",
     "short": "Arts"
   },
   {
     "id": "Other",
     "parent": "Community life",
-    "value": 9.6,
+    "value": 6.4,
     "tone": "other",
     "short": "Other"
   },
   {
     "id": "Welfare",
     "parent": "Care & emergency",
-    "value": 6.3,
+    "value": 4.2,
     "tone": "other",
     "short": "Welfare"
   },
   {
     "id": "Environment / animals",
     "parent": "Care & emergency",
-    "value": 5.8,
+    "value": 3.9,
     "tone": "other",
     "short": "Environment"
   },
   {
     "id": "Emergency",
     "parent": "Care & emergency",
-    "value": 5.6,
+    "value": 3.7,
     "tone": "other",
     "short": "Emergency"
   },
   {
     "id": "Health",
     "parent": "Care & emergency",
-    "value": 4.3,
+    "value": 2.9,
     "tone": "other",
     "short": "Health"
   },
   {
     "id": "Aged care",
     "parent": "Care & emergency",
-    "value": 3.8,
+    "value": 2.5,
     "tone": "other",
     "short": "Aged care"
   },
   {
     "id": "Disability",
     "parent": "Care & emergency",
-    "value": 3.2,
+    "value": 2.1,
     "tone": "other",
     "short": "Disability"
   },
   {
     "id": "Business / union",
     "parent": "Civic & work",
-    "value": 3.5,
+    "value": 2.3,
     "tone": "other",
     "short": "Business"
   },
   {
     "id": "Law / justice",
     "parent": "Civic & work",
-    "value": 3.1,
+    "value": 2.1,
     "tone": "other",
     "short": "Justice"
   }

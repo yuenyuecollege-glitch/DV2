@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "C8 — Sankey: remoteness (left) to formal / not formal (right). Population-weighted ASGS shares × GSS 2025 rates.",
-  "width": 560,
+  "width": 456,
   "height": 480,
-  "padding": { "left": 140, "right": 160, "top": 12, "bottom": 12 },
-  "autosize": { "type": "pad", "contains": "padding" },
+  "padding": { "left": 148, "right": 168, "top": 12, "bottom": 12 },
+  "autosize": { "type": "none" },
   "data": [
     { "name": "nodes", "url": "data/sankey_remoteness_nodes.json" },
     { "name": "links", "url": "data/sankey_remoteness_links.json" }

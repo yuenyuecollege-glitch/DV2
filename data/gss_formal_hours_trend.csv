@@ -1,4 +1,8 @@
-year,total_hours_million,note,insight,tone
-2019,596.0,ABS GSS release narrative (prior comparable survey),,other
-2020,490.0,ABS GSS release narrative (COVID-affected),Pandemic low (-17.8%),dip
-2025,618.2,ABS GSS 2025 Table 12.1,Above 2019 (+3.7%),peak
+year,total_hours_million,note,insight,tone,observed
+2019,596.0,ABS GSS release narrative (prior comparable survey),,other,1
+2020,490.0,ABS GSS release narrative (COVID-affected),"Pandemic impact: −106M hours\n(−17.8% vs 2019)",dip,1
+2021,505.0,Estimated (illustrative gap fill),,other,0
+2022,558.0,Estimated (illustrative gap fill),,other,0
+2023,542.0,Estimated (illustrative gap fill),,other,0
+2024,595.0,Estimated (illustrative gap fill),,other,0
+2025,618.2,ABS GSS 2025 Table 12.1,"Above 2019: +22M hours\n(+3.7%)",peak,1

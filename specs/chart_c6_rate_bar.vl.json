@@ -1,15 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C6 — Bar chart of formal volunteering rate, 2019–2025 (General Social Survey). Discrete years suit bars; C10 uses a hours waterfall.",
+  "description": "C6 — Bar chart of formal volunteering rate, 2019–2025 (General Social Survey). 2021–2024 are illustrative estimates between observed GSS years.",
   "width": "container",
   "height": 420,
-  "padding": { "left": 8, "right": 28, "top": 36, "bottom": 16 },
-  "data": { "url": "data/gss_formal_rate_trend.csv" },
+  "padding": { "left": 8, "right": 28, "top": 48, "bottom": 16 },
+  "data": {
+    "url": "data/gss_formal_rate_trend.csv",
+    "format": {
+      "type": "csv",
+      "parse": { "year": "number", "formal_rate_pct": "number", "observed": "number" }
+    }
+  },
   "transform": [
     { "filter": "datum.year >= 2019" },
     {
-      "calculate": "datum.year === 2019 ? 'start' : datum.year === 2025 ? 'end' : 'mid'",
-      "as": "tone"
+      "calculate": "datum.observed === 1 ? 'Observed (ABS GSS)' : 'Estimated (illustrative)'",
+      "as": "source_label"
     }
   ],
   "layer": [
@@ -20,6 +26,9 @@
           "field": "year",
           "type": "ordinal",
           "title": null,
+          "scale": {
+            "domain": [2019, 2020, 2021, 2022, 2023, 2024, 2025]
+          },
           "axis": { "labelAngle": 0, "labelFontWeight": 600 }
         },
         "y": {
@@ -28,14 +37,10 @@
           "title": "Formal volunteering rate (%)",
           "scale": { "domain": [0, 35] }
         },
-        "color": {
-          "field": "tone",
-          "type": "nominal",
-          "scale": {
-            "domain": ["start", "mid", "end"],
-            "range": ["#66bb6a", "#ff7043", "#2e7d32"]
-          },
-          "legend": null
+        "color": { "value": "#ff7043" },
+        "opacity": {
+          "condition": { "test": "datum.year === 2020", "value": 1 },
+          "value": 0.45
         },
         "tooltip": [
           { "field": "year", "type": "ordinal", "title": "Year" },
@@ -44,24 +49,57 @@
             "type": "quantitative",
             "title": "Formal volunteering rate (%)",
             "format": ".1f"
-          }
+          },
+          { "field": "source_label", "type": "nominal", "title": "Source" }
         ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.year === 2020" }],
+      "mark": {
+        "type": "text",
+        "dy": -22,
+        "align": "center",
+        "baseline": "bottom",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "lineHeight": 17,
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [2019, 2020, 2021, 2022, 2023, 2024, 2025]
+          }
+        },
+        "y": { "field": "formal_rate_pct", "type": "quantitative" },
+        "text": { "value": "Pandemic dip\n(−15.9% vs 2019)" },
+        "color": { "value": "#bf360c" }
       }
     },
     {
       "transform": [{ "filter": "datum.year === 2025" }],
       "mark": {
         "type": "text",
-        "dy": -14,
+        "dy": -12,
         "align": "center",
+        "baseline": "bottom",
         "fontSize": 15,
         "fontWeight": 700
       },
       "encoding": {
-        "x": { "field": "year", "type": "ordinal" },
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [2019, 2020, 2021, 2022, 2023, 2024, 2025]
+          }
+        },
         "y": { "field": "formal_rate_pct", "type": "quantitative" },
         "text": { "value": "Still below the 2019 level" },
-        "color": { "value": "#1b5e20" }
+        "color": { "value": "#bf360c" }
       }
     }
   ]

@@ -38,7 +38,7 @@
         },
         "tooltip": [
           { "field": "short", "type": "nominal", "title": "Organisation type" },
-          { "field": "share", "type": "quantitative", "title": "Share of volunteers (%)", "format": ".1f" }
+          { "field": "share", "type": "quantitative", "title": "Share of organisation mix (%)", "format": ".1f" }
         ]
       }
     },

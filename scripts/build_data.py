@@ -218,28 +218,53 @@ def build_gss_csvs() -> dict:
             hours_2025 = float(row[6])  # millions
             break
     claims["hours_2025_m"] = hours_2025
+    hours_2019, hours_2020 = 596.0, 490.0
     hours_trend = [
         {
             "year": 2019,
-            "total_hours_million": 596.0,
+            "total_hours_million": hours_2019,
             "note": "ABS GSS release narrative (prior comparable survey)",
+            "insight": "",
+            "tone": "other",
+            "observed": 1,
         },
         {
             "year": 2020,
-            "total_hours_million": 490.0,
+            "total_hours_million": hours_2020,
             "note": "ABS GSS release narrative (COVID-affected)",
+            "insight": "Pandemic impact: −106M hours\\n(−17.8% vs 2019)",
+            "tone": "dip",
+            "observed": 1,
         },
+    ]
+    # Fill 2021–2024 so the C10 axis is yearly (linear bridge 2020 → 2025).
+    for year in range(2021, 2025):
+        t = (year - 2020) / 5
+        hours_trend.append(
+            {
+                "year": year,
+                "total_hours_million": round(hours_2020 + (hours_2025 - hours_2020) * t, 1),
+                "note": "Linear interpolate (2020→2025)",
+                "insight": "",
+                "tone": "other",
+                "observed": 0,
+            }
+        )
+    hours_trend.append(
         {
             "year": 2025,
             "total_hours_million": hours_2025,
             "note": "ABS GSS 2025 Table 12.1",
-        },
-    ]
+            "insight": "Above 2019: +22M hours\\n(+3.7%)",
+            "tone": "peak",
+            "observed": 1,
+        }
+    )
     write_csv(OUT / "gss_formal_hours_trend.csv", hours_trend)
 
     # --- formal rate time series (C6) ---
     # Pre-2019: ABS Measuring What Matters (18+ comparable series quoted on Social connections page)
-    # 2019–2025: ABS GSS Table 1.3 (15+)
+    # 2019–2025: ABS GSS Table 1.3 (15+); 2021–2024 linearly interpolated for yearly axis
     rows01 = sheet_rows(RAW / "GSSDC01.xlsx", "Table 1.3 Proportion")
     gss_rates = {}
     for row in rows01:
@@ -250,13 +275,42 @@ def build_gss_csvs() -> dict:
             gss_rates[2025] = float(row[9])
             break
     slope = [
-        {"year": 2006, "formal_rate_pct": 34.1, "series": "ABS MWM (18+)"},
-        {"year": 2010, "formal_rate_pct": 36.2, "series": "ABS MWM (18+)"},
-        {"year": 2014, "formal_rate_pct": 30.9, "series": "ABS MWM (18+)"},
-        {"year": 2019, "formal_rate_pct": gss_rates[2019], "series": "ABS GSS (15+)"},
-        {"year": 2020, "formal_rate_pct": gss_rates[2020], "series": "ABS GSS (15+)"},
-        {"year": 2025, "formal_rate_pct": gss_rates[2025], "series": "ABS GSS (15+)"},
+        {"year": 2006, "formal_rate_pct": 34.1, "series": "ABS MWM (18+)", "observed": 1},
+        {"year": 2010, "formal_rate_pct": 36.2, "series": "ABS MWM (18+)", "observed": 1},
+        {"year": 2014, "formal_rate_pct": 30.9, "series": "ABS MWM (18+)", "observed": 1},
+        {
+            "year": 2019,
+            "formal_rate_pct": gss_rates[2019],
+            "series": "ABS GSS (15+)",
+            "observed": 1,
+        },
+        {
+            "year": 2020,
+            "formal_rate_pct": gss_rates[2020],
+            "series": "ABS GSS (15+)",
+            "observed": 1,
+        },
     ]
+    for year in range(2021, 2025):
+        t = (year - 2020) / 5
+        slope.append(
+            {
+                "year": year,
+                "formal_rate_pct": round(
+                    gss_rates[2020] + (gss_rates[2025] - gss_rates[2020]) * t, 1
+                ),
+                "series": "Linear interpolate (2020→2025)",
+                "observed": 0,
+            }
+        )
+    slope.append(
+        {
+            "year": 2025,
+            "formal_rate_pct": gss_rates[2025],
+            "series": "ABS GSS (15+)",
+            "observed": 1,
+        }
+    )
     write_csv(OUT / "gss_formal_rate_trend.csv", slope)
     claims["formal_rate_2019"] = gss_rates[2019]
     claims["formal_rate_2020"] = gss_rates[2020]

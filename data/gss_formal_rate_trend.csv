@@ -1,7 +1,11 @@
-year,formal_rate_pct,series
-2006,34.1,ABS MWM (18+)
-2010,36.2,ABS MWM (18+)
-2014,30.9,ABS MWM (18+)
-2019,29.5,ABS GSS (15+)
-2020,24.8,ABS GSS (15+)
-2025,22.6,ABS GSS (15+)
+year,formal_rate_pct,series,observed
+2006,34.1,ABS MWM (18+),1
+2010,36.2,ABS MWM (18+),1
+2014,30.9,ABS MWM (18+),1
+2019,29.5,ABS GSS (15+),1
+2020,24.8,ABS GSS (15+),1
+2021,23.6,Estimated (illustrative gap fill),0
+2022,22.4,Estimated (illustrative gap fill),0
+2023,23.1,Estimated (illustrative gap fill),0
+2024,22.8,Estimated (illustrative gap fill),0
+2025,22.6,ABS GSS (15+),1

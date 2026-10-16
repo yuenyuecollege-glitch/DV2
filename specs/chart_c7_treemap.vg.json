@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "C7 — Hierarchical treemap of organisation types among formal volunteers, GSS 2025. Parent sectors nest child types.",
+  "description": "C7 — Hierarchical treemap of organisation mix among formal volunteers, GSS 2025. Shares renormalized to 100%; parent sectors nest child types.",
   "width": 1040,
   "height": 560,
   "padding": 8,
@@ -49,13 +49,48 @@
         },
         {
           "type": "formula",
+          "as": "cellW",
+          "expr": "datum.x1 - datum.x0"
+        },
+        {
+          "type": "formula",
+          "as": "cellH",
+          "expr": "datum.y1 - datum.y0"
+        },
+        {
+          "type": "formula",
+          "as": "rotateLabel",
+          "expr": "datum.cellW < 78 && datum.cellH > datum.cellW * 1.8"
+        },
+        {
+          "type": "formula",
           "as": "showLabel",
-          "expr": "(datum.x1 - datum.x0) > 56 && (datum.y1 - datum.y0) > 28"
+          "expr": "(datum.rotateLabel && datum.cellH > 72) || (datum.cellW > 56 && datum.cellH > 28)"
+        },
+        {
+          "type": "formula",
+          "as": "stackLabel",
+          "expr": "!datum.rotateLabel && datum.cellW < 140 && datum.cellH > 44"
         },
         {
           "type": "formula",
           "as": "labelText",
-          "expr": "datum.short + ' ' + format(datum.value, '.0f') + '%'"
+          "expr": "datum.stackLabel ? [datum.short, format(datum.value, '.0f') + '%'] : datum.short + ' ' + format(datum.value, '.0f') + '%'"
+        },
+        {
+          "type": "formula",
+          "as": "labelSpan",
+          "expr": "datum.rotateLabel ? datum.cellH : datum.cellW"
+        },
+        {
+          "type": "formula",
+          "as": "labelChars",
+          "expr": "datum.stackLabel ? length(datum.short) : length(datum.short) + length(format(datum.value, '.0f')) + 2"
+        },
+        {
+          "type": "formula",
+          "as": "labelSize",
+          "expr": "clamp(min(14, (datum.labelSpan - 16) / max(1, datum.labelChars * 0.8)), 9, 14)"
         }
       ]
     }
@@ -82,7 +117,7 @@
       "encode": {
         "enter": {
           "tooltip": {
-            "signal": "datum.id + ' (' + datum.parent + '): ' + format(datum.value, '.1f') + '% of formal volunteers'"
+            "signal": "datum.id + ' (' + datum.parent + '): ' + format(datum.value, '.1f') + '% of organisation mix'"
           }
         },
         "update": {
@@ -107,11 +142,17 @@
           "y": { "field": "cy" },
           "align": { "value": "center" },
           "baseline": { "value": "middle" },
+          "angle": {
+            "signal": "datum.rotateLabel ? -90 : 0"
+          },
           "text": {
             "signal": "datum.showLabel ? datum.labelText : ''"
           },
           "fill": { "value": "#f7f8f6" },
-          "fontSize": { "value": 14 },
+          "fontSize": { "field": "labelSize" },
+          "lineHeight": {
+            "signal": "datum.labelSize + 2"
+          },
           "fontWeight": { "value": 600 }
         }
       }

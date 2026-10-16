@@ -285,18 +285,18 @@ section:nth-child(even) {
 .hl-c1-soft { color: #66c2a4; }
 .hl-c2 { color: #00838f; }
 .hl-c3 { color: #00838f; }
-.hl-c4 { color: #ff6d00; }
-.hl-c4-alt { color: #3949ab; }
+.hl-c4 { color: #3949ab; }
+.hl-c4-alt { color: #7986cb; }
 .hl-c5 { color: #6a1b9a; }
 .hl-c5-soft { color: #9575cd; }
-.hl-c6 { color: #2e7d32; }
-.hl-c6-dip { color: #e64a19; }
+.hl-c6 { color: #ff8a65; }
+.hl-c6-dip { color: #ff7043; }
 .hl-c7 { color: #00897b; }
 .hl-c8 { color: #3949ab; }
 .hl-c8-hot { color: #ff6d00; }
 .hl-c9 { color: #c2185b; }
-.hl-c10 { color: #2e7d32; }
-.hl-c10-dip { color: #e64a19; }
+.hl-c10 { color: #ff8a65; }
+.hl-c10-dip { color: #ff7043; }
 .hl-c11 { color: #1565c0; }
 .hl-c12-for { color: #00897b; }
 .hl-c12-against { color: #e65100; }
@@ -328,6 +328,7 @@ section:nth-child(even) {
 
 #chart-c4.chart-frame,
 #chart-c5.chart-frame,
+#chart-c8.chart-frame,
 #chart-c9.chart-frame {
   display: flex;
   align-items: center;
@@ -345,6 +346,15 @@ section:nth-child(even) {
   max-width: 100%;
   margin: 0 auto;
   display: block;
+}
+
+/* C8: vega-embed class is on the frame itself; center the fixed-size SVG */
+#chart-c8 > svg {
+  flex: 0 0 auto;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  overflow: visible;
 }
 
 #chart-c9.chart-frame {
@@ -388,6 +398,13 @@ section:nth-child(even) {
 }
 
 #chart-c4 {
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+#chart-c4 .vega-embed {
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }

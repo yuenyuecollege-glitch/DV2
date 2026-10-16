@@ -1,10 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "C4 — Radial bar chart: formal volunteering rate by remoteness, General Social Survey 2025.",
-  "width": 480,
-  "height": 480,
-  "padding": 28,
-  "autosize": { "type": "pad", "contains": "padding" },
+  "description": "C4 — Radial bar chart: formal volunteering rate by remoteness, GSS 2025 Table 7.3. Labels and tooltips both use formal_rate_pct.",
+  "width": 552,
+  "height": 552,
+  "padding": 0,
+  "autosize": { "type": "none" },
+  "signals": [
+    { "name": "cx", "update": "width / 2" },
+    { "name": "cy", "update": "height / 2" },
+    { "name": "innerR", "update": "min(width, height) * 0.11" },
+    { "name": "baseR", "update": "min(width, height) * 0.18" },
+    { "name": "spanR", "update": "min(width, height) * 0.22" },
+    { "name": "labelR", "update": "min(width, height) * 0.42" }
+  ],
   "data": [
     {
       "name": "table",
@@ -12,6 +20,12 @@
       "format": { "type": "csv", "parse": { "formal_rate_pct": "number" } },
       "transform": [
         { "type": "filter", "expr": "datum.remoteness !== 'Total'" },
+        {
+          "type": "formula",
+          "as": "ord",
+          "expr": "indexof(['Major cities', 'Inner regional', 'Outer regional', 'Remote'], datum.remoteness)"
+        },
+        { "type": "collect", "sort": { "field": "ord" } },
         {
           "type": "formula",
           "as": "tone",
@@ -35,12 +49,7 @@
         {
           "type": "formula",
           "as": "outer",
-          "expr": "70 + (datum.formal_rate_pct / 40) * 130"
-        },
-        {
-          "type": "formula",
-          "as": "labelR",
-          "expr": "datum.outer + 36"
+          "expr": "baseR + (datum.formal_rate_pct / 40) * spanR"
         },
         {
           "type": "formula",
@@ -49,23 +58,28 @@
         },
         {
           "type": "formula",
-          "as": "lx",
-          "expr": "datum.labelR * cos(datum.mid)"
-        },
-        {
-          "type": "formula",
-          "as": "ly",
-          "expr": "datum.labelR * sin(datum.mid)"
-        },
-        {
-          "type": "formula",
-          "as": "labelAlign",
-          "expr": "cos(datum.mid) > 0.15 ? 'left' : cos(datum.mid) < -0.15 ? 'right' : 'center'"
+          "as": "rateLabel",
+          "expr": "format(datum.formal_rate_pct, '.1f') + '%'"
         },
         {
           "type": "formula",
           "as": "labelText",
-          "expr": "datum.remoteness === 'Remote' ? 'Remote\\nWidest gap from cities' : datum.remoteness"
+          "expr": "datum.remoteness + '\\n' + datum.rateLabel"
+        },
+        {
+          "type": "formula",
+          "as": "tooltipText",
+          "expr": "datum.remoteness + ': formal volunteering rate ' + datum.rateLabel"
+        },
+        {
+          "type": "formula",
+          "as": "lx",
+          "expr": "labelR * sin(datum.mid)"
+        },
+        {
+          "type": "formula",
+          "as": "ly",
+          "expr": "-labelR * cos(datum.mid)"
         }
       ]
     }
@@ -75,7 +89,7 @@
       "name": "color",
       "type": "ordinal",
       "domain": ["highlight", "other"],
-      "range": ["#ff6d00", "#3949ab"]
+      "range": ["#3949ab", "#c5cae9"]
     }
   ],
   "marks": [
@@ -84,17 +98,17 @@
       "from": { "data": "table" },
       "encode": {
         "enter": {
-          "x": { "signal": "width / 2" },
-          "y": { "signal": "height / 2" },
           "startAngle": { "field": "theta0" },
           "endAngle": { "field": "theta1" },
-          "innerRadius": { "value": 52 },
-          "outerRadius": { "field": "outer" },
           "cornerRadius": { "value": 4 },
-          "fill": { "scale": "color", "field": "tone" },
-          "tooltip": {
-            "signal": "datum.remoteness + ': formal volunteering rate ' + format(datum.formal_rate_pct, '.1f') + '%'"
-          }
+          "fill": { "scale": "color", "field": "tone" }
+        },
+        "update": {
+          "x": { "signal": "cx" },
+          "y": { "signal": "cy" },
+          "innerRadius": { "signal": "innerR" },
+          "outerRadius": { "field": "outer" },
+          "tooltip": { "signal": "datum.tooltipText" }
         }
       }
     },
@@ -103,16 +117,19 @@
       "from": { "data": "table" },
       "encode": {
         "enter": {
-          "x": { "signal": "width / 2 + datum.lx" },
-          "y": { "signal": "height / 2 + datum.ly" },
           "text": { "field": "labelText" },
-          "align": { "field": "labelAlign" },
+          "align": { "value": "center" },
           "baseline": { "value": "middle" },
-          "fontSize": { "value": 15 },
+          "fontSize": { "value": 14 },
           "fontWeight": { "value": 700 },
           "fill": { "value": "#0d1b24" },
           "lineBreak": { "value": "\n" },
-          "lineHeight": { "value": 18 }
+          "lineHeight": { "value": 17 }
+        },
+        "update": {
+          "x": { "signal": "cx + datum.lx" },
+          "y": { "signal": "cy + datum.ly" },
+          "tooltip": { "signal": "datum.tooltipText" }
         }
       }
     },
@@ -120,8 +137,6 @@
       "type": "text",
       "encode": {
         "enter": {
-          "x": { "signal": "width / 2" },
-          "y": { "signal": "height / 2" },
           "text": { "value": "Formal\nrate" },
           "align": { "value": "center" },
           "baseline": { "value": "middle" },
@@ -129,7 +144,12 @@
           "fontWeight": { "value": 650 },
           "fill": { "value": "#4a5863" },
           "lineBreak": { "value": "\n" },
-          "lineHeight": { "value": 20 }
+          "lineHeight": { "value": 18 },
+          "dy": { "value": -8 }
+        },
+        "update": {
+          "x": { "signal": "cx" },
+          "y": { "signal": "cy" }
         }
       }
     }

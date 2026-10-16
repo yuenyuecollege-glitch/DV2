@@ -41,7 +41,7 @@ const THEME = {
   view: { stroke: "transparent" },
 };
 
-const SPEC_VERSION = "20261009ad";
+const SPEC_VERSION = "20261016c6b";
 
 const CHARTS = [
   ["#map-c1", "specs/map_c1_choropleth.vl.json"],
@@ -100,9 +100,11 @@ function prepareSpec(selector, spec, width, height) {
 
   if (selector === "#chart-c4") {
     const side = Math.min(width, height);
-    const chart = Math.max(400, Math.min(500, side - 100));
+    const chart = Math.max(400, Math.min(560, side - 8));
     next.width = chart;
     next.height = chart;
+    next.padding = 0;
+    next.autosize = { type: "none" };
   }
 
   if (selector === "#chart-c9") {
@@ -111,6 +113,15 @@ function prepareSpec(selector, spec, width, height) {
     next.width = plotW;
     next.height = plotH;
     next.padding = { left: 24, right: 118, top: 12, bottom: 12 };
+  }
+
+  if (selector === "#chart-c8") {
+    // Fixed layout sankey — keep natural size and center in the frame
+    // (do not let the tall/full-width embed stretch the view).
+    next.width = 456;
+    next.height = 480;
+    next.padding = { left: 148, right: 168, top: 12, bottom: 12 };
+    next.autosize = { type: "none" };
   }
 
   return next;

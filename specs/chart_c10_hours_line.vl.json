@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C10 — Line of total formal volunteer hours, 2019–2025.",
+  "description": "C10 — Line of total formal volunteer hours, 2019–2025. 2021–2024 are illustrative estimates between observed years.",
   "width": "container",
   "height": 420,
   "padding": { "left": 8, "right": 24, "top": 16, "bottom": 16 },
@@ -10,19 +10,33 @@
       "type": "csv",
       "parse": {
         "year": "number",
-        "total_hours_million": "number"
+        "total_hours_million": "number",
+        "observed": "number"
       }
     }
   },
+  "transform": [
+    {
+      "calculate": "datum.observed === 1 ? 'Observed (ABS GSS)' : 'Estimated (illustrative)'",
+      "as": "source_label"
+    }
+  ],
   "layer": [
     {
-      "mark": { "type": "line", "strokeWidth": 4.5, "color": "#2e7d32", "clip": false },
+      "mark": { "type": "line", "strokeWidth": 4.5, "color": "#ff7043", "clip": false },
       "encoding": {
         "x": {
           "field": "year",
-          "type": "ordinal",
+          "type": "quantitative",
           "title": null,
-          "axis": { "labelAngle": 0, "labelFontWeight": 600 }
+          "scale": { "domain": [2019, 2025], "nice": false },
+          "axis": {
+            "values": [2019, 2020, 2021, 2022, 2023, 2024, 2025],
+            "format": "d",
+            "labelAngle": 0,
+            "labelFontWeight": 600,
+            "tickMinStep": 1
+          }
         },
         "y": {
           "field": "total_hours_million",
@@ -32,13 +46,14 @@
           "axis": { "tickCount": 7 }
         },
         "tooltip": [
-          { "field": "year", "type": "ordinal", "title": "Year" },
+          { "field": "year", "type": "quantitative", "title": "Year", "format": "d" },
           {
             "field": "total_hours_million",
             "type": "quantitative",
             "title": "Total hours (millions)",
             "format": ".1f"
           },
+          { "field": "source_label", "type": "nominal", "title": "Source" },
           { "field": "note", "type": "nominal", "title": "Source note" }
         ]
       }
@@ -47,45 +62,62 @@
       "mark": {
         "type": "circle",
         "filled": true,
-        "size": 280,
         "opacity": 1,
         "stroke": "#f5f7f4",
         "strokeWidth": 2,
         "clip": false
       },
       "encoding": {
-        "x": { "field": "year", "type": "ordinal" },
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": { "domain": [2019, 2025], "nice": false }
+        },
         "y": { "field": "total_hours_million", "type": "quantitative" },
-        "color": {
-          "field": "tone",
-          "type": "nominal",
-          "scale": {
-            "domain": ["dip", "peak", "other"],
-            "range": ["#ff7043", "#2e7d32", "#81c784"]
+        "size": {
+          "condition": { "test": "datum.year === 2020", "value": 320 },
+          "value": 160
+        },
+        "color": { "value": "#ff7043" },
+        "opacity": {
+          "condition": { "test": "datum.year === 2020", "value": 1 },
+          "value": 0.5
+        },
+        "tooltip": [
+          { "field": "year", "type": "quantitative", "title": "Year", "format": "d" },
+          {
+            "field": "total_hours_million",
+            "type": "quantitative",
+            "title": "Total hours (millions)",
+            "format": ".1f"
           },
-          "legend": null
-        }
+          { "field": "source_label", "type": "nominal", "title": "Source" },
+          { "field": "note", "type": "nominal", "title": "Source note" }
+        ]
       }
     },
     {
       "transform": [{ "filter": "isValid(datum.insight) && datum.insight != ''" }],
       "mark": {
         "type": "text",
-        "dy": 32,
-        "fontSize": 15,
+        "dy": 28,
+        "fontSize": 13,
         "fontWeight": 700,
+        "lineHeight": 16,
         "baseline": "top",
         "align": "center",
+        "lineBreak": "\\n",
         "clip": false
       },
       "encoding": {
-        "x": { "field": "year", "type": "ordinal" },
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": { "domain": [2019, 2025], "nice": false }
+        },
         "y": { "field": "total_hours_million", "type": "quantitative" },
         "text": { "field": "insight", "type": "nominal" },
-        "color": {
-          "condition": { "test": "datum.tone === 'dip'", "value": "#bf360c" },
-          "value": "#1b5e20"
-        }
+        "color": { "value": "#bf360c" }
       }
     }
   ]

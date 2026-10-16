@@ -292,11 +292,11 @@ Spec: `specs/chart_c6_slope.vl.json`
 
 | Field | Detail |
 | --- | --- |
-| Dataset type | Table of organisation types with share of formal volunteers (%). Precomputed squarified layout in CSV. |
-| Sources / relevance / URL | ABS GSS 2025 Table 11.3. File: `data/treemap_org_types.csv` (from `gss_org_types.csv`). Sport/recreation 33.3%; faith 22.9%; community/cultural 17.6%. People may name more than one type — shares need not sum to 100. |
-| Keys / values | Key: organisation type. Value: share of volunteers (%). |
-| Data type — qualitative | Organisation type. |
-| Data type — ordered (quantitative) | Share (%); tile area. |
+| Dataset type | Hierarchical table of organisation types with share of the organisation mix (%), renormalized to sum to 100%. |
+| Sources / relevance / URL | ABS GSS 2025 Table 11.3 (`gss_org_types.csv` raw multi-response rates). File: `data/org_types_hierarchy.json`. Sport/recreation 22.3%; faith 15.3%; community/cultural 11.8% of the mix (raw ABS rates are higher because respondents may name more than one type; tiles are renormalized so areas sum to 100%). |
+| Keys / values | Key: organisation type (nested under sector). Value: share of organisation mix (%). |
+| Data type — qualitative | Organisation type; parent sector. |
+| Data type — ordered (quantitative) | Share of mix (%); tile area. |
 
 **Why?**
 
@@ -315,7 +315,7 @@ Spec: `specs/chart_c6_slope.vl.json`
 
 | Channel | Attribute encoded | Attribute type |
 | --- | --- | --- |
-| Size (area of tile) | Share of volunteers (%) | Quantitative |
+| Size (area of tile) | Share of organisation mix (%) | Quantitative |
 | Colour hue | Sport vs other types | Categorical |
 | Text | Short type label (large tiles) | Categorical |
 

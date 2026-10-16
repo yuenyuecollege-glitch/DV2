@@ -31,7 +31,7 @@ Spine adapted from the suggested prompt + GSS/Census/ACNC evidence.
 | --- | --- | --- | --- |
 | 1 | **Where people still volunteer** | Participation is uneven across Australia: Census rates vary by region; remote/regional GSS rates beat major cities; raw volunteer *counts* pile into populous states. | C1–C3 maps, C4 |
 | 2 | **Who steps forward** | Peak formal rates sit in mid-life (45–54 = **28.0%**); youngest adults lag (25–34 = **13.1%**). | C5, C6 |
-| 3 | **What they do** | Sport/recreation orgs lead (**33.3%**), then faith (**22.9%**) and community/cultural (**17.6%**). Formal vs informal split matters for organisations. | C7, C8 |
+| 3 | **What they do** | Sport/recreation leads the org mix (**22.3%**), then faith (**15.3%**) and community/cultural (**11.8%**) — tiles sum to 100%. Formal vs informal split matters for organisations. | C7, C8 |
 | 4 | **Hours and contribution** | Hours recovered after 2020 even while the *rate* stayed soft; charities report **3.77M** volunteers (ACNC). | C9, C10, C11 |
 | 5 | **Why people don’t — and what orgs face** | “No time” (**47%**) and “not interested” (**35.5%**) dominate non-volunteering; volunteer-run charities are the organisational backbone. | C12 |
 
@@ -63,7 +63,7 @@ All three Australia maps use **Albers / conic equal-area** tuned for Australia (
 | **C4** | ★ | **Dumbbell / connected-dot** | Major cities (20.9%) vs remote (34.0%) formal rate 2025 — the geography gap in one glance | GSS 2025 Table 7.3 |
 | **C5** | ★ | **Lollipop** | Formal volunteering rate by age (15–24 … 65+) | GSS 2025 age table / Table 10 |
 | **C6** | ★ | **Slope chart** | Formal volunteering rate over time (≈2006–2025; include 2019→2020 COVID drop) | ABS Measuring What Matters “Social connections” + GSS releases |
-| **C7** | ★ | **Treemap** | Share of volunteers by organisation type (sport 33%, faith 23%, community/cultural 18%, …) | GSS 2025 Table 11 |
+| **C7** | ★ | **Treemap** | Share of organisation mix by type, renormalized to 100% (sport 22%, faith 15%, community/cultural 12%, …) | GSS 2025 Table 11 |
 | **C8** | ★ | **Sankey / alluvial** | Formal / informal / both (Snapshot 2023 population shares) — how “volunteering” splits beyond formal orgs | Snapshot of Volunteering in Australia 2023 |
 | **C9** | ★ | **Heatmap** | Annual hours band × age among formal volunteers | GSS 2025 Table 12 |
 | **C10** | basic | **Multi-line** | Total formal hours: 2019 (596M) → 2020 (490M) → 2025 (618M) | GSS releases |
