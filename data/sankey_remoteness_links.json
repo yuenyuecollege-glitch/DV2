@@ -57,7 +57,7 @@
     "origin": "Remote",
     "dest": "Formal volunteer",
     "value": 0.68,
-    "colour": "#ff6d00",
+    "colour": "#4a148c",
     "path": "M36,451.80 C228.0,451.80 228.0,115.07 420,115.07 L420,118.00 C228.0,118.00 228.0,454.59 36,454.59 Z",
     "label": "Remote to Formal volunteer: 0.7% of adults",
     "highlight": true

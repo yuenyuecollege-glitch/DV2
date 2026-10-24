@@ -41,7 +41,7 @@ const THEME = {
   view: { stroke: "transparent" },
 };
 
-const SPEC_VERSION = "20261016c6b";
+const SPEC_VERSION = "20261024c8";
 
 const CHARTS = [
   ["#map-c1", "specs/map_c1_choropleth.vl.json"],

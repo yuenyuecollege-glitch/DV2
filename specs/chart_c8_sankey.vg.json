@@ -7,7 +7,7 @@
   "autosize": { "type": "none" },
   "data": [
     { "name": "nodes", "url": "data/sankey_remoteness_nodes.json" },
-    { "name": "links", "url": "data/sankey_remoteness_links.json" }
+    { "name": "links", "url": "data/sankey_remoteness_links.json?v=20261024c8" }
   ],
   "marks": [
     {
