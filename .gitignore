@@ -9,6 +9,7 @@ __pycache__/
 # Heavy course materials — keep local; do not ship to GitHub Pages
 Course Note/
 *.pdf
+!sketch/volunteer-organisations.pdf
 *.docx
 ASSIGNMENT_COMPLETION_PROMPT.md
 
