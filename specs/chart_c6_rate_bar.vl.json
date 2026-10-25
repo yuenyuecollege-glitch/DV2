@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C6 — Bar chart of formal volunteering rate, 2019–2025 (General Social Survey). 2021–2024 are illustrative estimates between observed GSS years.",
+  "description": "C6 — Bar chart of formal volunteering rate, 2019–2025 (General Social Survey). 2021–2024 are illustrative estimates between observed General Social Survey years.",
   "width": "container",
   "height": 420,
   "padding": { "left": 8, "right": 28, "top": 48, "bottom": 16 },
@@ -14,7 +14,7 @@
   "transform": [
     { "filter": "datum.year >= 2019" },
     {
-      "calculate": "datum.observed === 1 ? 'Observed (ABS GSS)' : 'Estimated (illustrative)'",
+      "calculate": "datum.observed === 1 ? 'Observed (General Social Survey)' : 'Estimated (illustrative)'",
       "as": "source_label"
     }
   ],

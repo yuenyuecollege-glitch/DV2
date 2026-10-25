@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "C4 — Radial bar chart: formal volunteering rate by remoteness, GSS 2025 Table 7.3. Labels and tooltips both use formal_rate_pct.",
+  "description": "C4 — Radial bar chart: formal volunteering rate by remoteness, General Social Survey 2025 Table 7.3. Labels and tooltips both use formal_rate_pct.",
   "width": 552,
   "height": 552,
   "padding": 0,

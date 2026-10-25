@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "C7 — Hierarchical treemap of organisation mix among formal volunteers, GSS 2025. Shares renormalized to 100%; parent sectors nest child types.",
+  "description": "C7 — Hierarchical treemap of organisation mix among formal volunteers, General Social Survey 2025. Shares renormalized to 100%; parent sectors nest child types.",
   "width": 1040,
   "height": 560,
   "padding": 8,

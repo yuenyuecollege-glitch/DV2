@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "C12 — Diverging bars: reasons for vs against formal volunteering, GSS 2025.",
+  "description": "C12 — Diverging bars: reasons for vs against formal volunteering, General Social Survey 2025.",
   "width": "container",
   "height": 520,
   "padding": { "left": 8, "right": 40, "top": 28, "bottom": 16 },

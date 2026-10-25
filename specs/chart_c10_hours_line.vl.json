@@ -17,7 +17,7 @@
   },
   "transform": [
     {
-      "calculate": "datum.observed === 1 ? 'Observed (ABS GSS)' : 'Estimated (illustrative)'",
+      "calculate": "datum.observed === 1 ? 'Observed (General Social Survey)' : 'Estimated (illustrative)'",
       "as": "source_label"
     }
   ],

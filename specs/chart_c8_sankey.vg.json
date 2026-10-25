@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "C8 — Sankey: remoteness (left) to formal / not formal (right). Population-weighted ASGS shares × GSS 2025 rates.",
+  "description": "C8 — Sankey: remoteness (left) to formal / not formal (right). Population-weighted ASGS shares × General Social Survey 2025 rates.",
   "width": 456,
   "height": 480,
   "padding": { "left": 148, "right": 168, "top": 12, "bottom": 12 },
